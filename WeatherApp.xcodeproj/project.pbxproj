@@ -12,6 +12,7 @@
 		241E4D11204C0FA5001048FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D0F204C0FA5001048FC /* Main.storyboard */; };
 		241E4D13204C0FA5001048FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D12204C0FA5001048FC /* Assets.xcassets */; };
 		241E4D16204C0FA5001048FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */; };
+		24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		241E4D12204C0FA5001048FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		241E4D15204C0FA5001048FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		241E4D17204C0FA5001048FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				241E4D0B204C0FA5001048FC /* AppDelegate.swift */,
 				241E4D0D204C0FA5001048FC /* ViewController.swift */,
+				24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */,
 				241E4D0F204C0FA5001048FC /* Main.storyboard */,
 				241E4D12204C0FA5001048FC /* Assets.xcassets */,
 				241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				241E4D0E204C0FA5001048FC /* ViewController.swift in Sources */,
+				24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */,
 				241E4D0C204C0FA5001048FC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
