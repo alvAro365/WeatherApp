@@ -48,7 +48,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Bc-uU-UuO">
-                                                    <rect key="frame" x="16" y="9" width="331" height="12"/>
+                                                    <rect key="frame" x="16" y="9" width="319" height="12"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCm-WO-nq2">
                                                             <rect key="frame" x="0.0" y="0.0" width="39" height="12"/>
@@ -57,13 +57,13 @@
                                                             <color key="highlightedColor" red="0.87834745645523071" green="0.87849193811416626" blue="0.87831670045852661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="FORECAST" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDm-rG-zWn">
-                                                            <rect key="frame" x="141" y="0.0" width="53.5" height="12"/>
+                                                            <rect key="frame" x="135" y="0.0" width="53.5" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="TEMP." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiL-zF-hQW">
-                                                            <rect key="frame" x="301" y="0.0" width="30" height="12"/>
+                                                            <rect key="frame" x="289" y="0.0" width="30" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="8Bc-uU-UuO" secondAttribute="bottom" id="BUT-nc-VRl"/>
                                                 <constraint firstItem="8Bc-uU-UuO" firstAttribute="leading" secondItem="C9K-35-JyG" secondAttribute="leading" constant="16" id="Onc-AW-g1x"/>
-                                                <constraint firstAttribute="trailing" secondItem="8Bc-uU-UuO" secondAttribute="trailing" constant="28" id="hma-Pk-ezX"/>
+                                                <constraint firstAttribute="trailing" secondItem="8Bc-uU-UuO" secondAttribute="trailing" constant="40" id="hma-Pk-ezX"/>
                                                 <constraint firstItem="8Bc-uU-UuO" firstAttribute="top" secondItem="C9K-35-JyG" secondAttribute="top" constant="9" id="spQ-02-Qoq"/>
                                             </constraints>
                                         </tableViewCellContentView>
