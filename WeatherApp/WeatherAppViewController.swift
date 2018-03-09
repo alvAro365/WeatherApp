@@ -11,9 +11,9 @@ import UIKit
 class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
-    let data = ["New York": ["forecast": "cloudy", "temp": "20"],
-                 "Lisbon": ["forecast": "sunny", "temp": "30"],
-        "Paris": ["forecast": "rainy", "temp": "5"]]
+    let data = ["New York": ["forecast": "☁️", "temp": "20℃"],
+                 "Lisbon": ["forecast": "☀️", "temp": "30℃"],
+        "Paris": ["forecast": "🌧", "temp": "5℃"]]
     
     var filteredData = [String: [String: String]]()
     var searchController: UISearchController!
@@ -35,7 +35,8 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
         searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.barTintColor = UIColor(red: (247/255), green: (247/255), blue: (247/255), alpha: 1)
-        tableView.tableHeaderView = searchController.searchBar
+        navigationItem.searchController = searchController
+//        tableView.tableHeaderView = searchController.searchBar
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
     }

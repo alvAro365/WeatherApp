@@ -16,6 +16,7 @@ class HeaderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        placesTitle.sizeToFit()
         // Initialization code
     }
 
