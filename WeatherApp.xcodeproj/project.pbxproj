@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		241E4D0C204C0FA5001048FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241E4D0B204C0FA5001048FC /* AppDelegate.swift */; };
-		241E4D0E204C0FA5001048FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241E4D0D204C0FA5001048FC /* ViewController.swift */; };
+		241E4D0E204C0FA5001048FC /* WeatherAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241E4D0D204C0FA5001048FC /* WeatherAppViewController.swift */; };
 		241E4D11204C0FA5001048FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D0F204C0FA5001048FC /* Main.storyboard */; };
 		241E4D13204C0FA5001048FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D12204C0FA5001048FC /* Assets.xcassets */; };
 		241E4D16204C0FA5001048FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */; };
 		24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */; };
+		24C5860B2052AB9D00554F8F /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		241E4D08204C0FA5001048FC /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		241E4D0B204C0FA5001048FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		241E4D0D204C0FA5001048FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		241E4D0D204C0FA5001048FC /* WeatherAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppViewController.swift; sourceTree = "<group>"; };
 		241E4D10204C0FA5001048FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		241E4D12204C0FA5001048FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		241E4D15204C0FA5001048FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		241E4D17204C0FA5001048FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				241E4D0B204C0FA5001048FC /* AppDelegate.swift */,
-				241E4D0D204C0FA5001048FC /* ViewController.swift */,
+				241E4D0D204C0FA5001048FC /* WeatherAppViewController.swift */,
 				24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */,
+				24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */,
 				241E4D0F204C0FA5001048FC /* Main.storyboard */,
 				241E4D12204C0FA5001048FC /* Assets.xcassets */,
 				241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */,
@@ -139,9 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241E4D0E204C0FA5001048FC /* ViewController.swift in Sources */,
+				241E4D0E204C0FA5001048FC /* WeatherAppViewController.swift in Sources */,
 				24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */,
 				241E4D0C204C0FA5001048FC /* AppDelegate.swift in Sources */,
+				24C5860B2052AB9D00554F8F /* DataTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
