@@ -72,12 +72,13 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-//        if let searchText = searchController.searchBar.text {
-//            filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
-//                return (dataString.range(of: searchText, options: .caseInsensitive) != nil)
-//            })
-//            tableView.reloadData()
-//        }
+        if let searchText = searchController.searchBar.text {
+            filteredData = searchText.isEmpty ? data : data.filter{(key,value) -> Bool in
+                return (key.range(of: searchText, options: .caseInsensitive) != nil)
+            }
+        
+            tableView.reloadData()
+        }
     }
 
 }
