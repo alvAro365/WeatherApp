@@ -15,6 +15,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
                  "Lisbon": ["forecast": "☀️", "temp": "30℃"],
         "Paris": ["forecast": "🌧", "temp": "5℃"]]
     
+    
+    let favorites = ["Tallinn": ["forecast": "☁️", "temp": "20℃"],
+                "Oslo": ["forecast": "☀️", "temp": "30℃"],
+                "Algarve": ["forecast": "🌧", "temp": "5℃"]]
+    
     var filteredData = [String: [String: String]]()
     var searchController: UISearchController!
     
@@ -24,7 +29,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        filteredData = data
+//        filteredData = data
         setupSearchController()
     }
     
@@ -44,20 +49,17 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell") as! DataTableViewCell
         
-        let keyValue = Array(filteredData)[indexPath.row].key
-        let values = filteredData[keyValue]
+        let keyValue = Array(favorites)[indexPath.row].key
+        let values = favorites[keyValue]
         cell.place?.text = keyValue
         cell.forecast.text = values?["forecast"]
         cell.temp.text = values?["temp"]
-        
-        
-//        cell.textLabel?.text = filteredData[indexPath.row]
-        
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredData.count
+        return favorites.count
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,14 +75,12 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
     
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filteredData = searchText.isEmpty ? data : data.filter{(key,value) -> Bool in
+            filteredData = searchText.isEmpty ? filteredData : data.filter{(key,value) -> Bool in
                 return (key.range(of: searchText, options: .caseInsensitive) != nil)
             }
-        
             tableView.reloadData()
         }
     }
-
 }
 
 
