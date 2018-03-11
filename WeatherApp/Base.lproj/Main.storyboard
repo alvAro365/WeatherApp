@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ugS-Jj-Szd">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" rowHeight="22" id="wE4-sV-awO" customClass="HeaderTableViewCell" customModule="WeatherApp" customModuleProvider="target">
@@ -147,32 +147,23 @@
                     <navigationItem key="navigationItem" title="WeatherApp" id="jMk-MO-1tc"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="Upk-IQ-BQu" id="GWU-OD-Rve"/>
                         <outlet property="tableView" destination="ugS-Jj-Szd" id="Wz7-9Z-Fev"/>
                     </connections>
                 </viewController>
-                <searchDisplayController id="Upk-IQ-BQu">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="FIW-hf-cCP"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="LvD-OF-EMT"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="GO1-rs-VWX"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="emh-l3-Y0b"/>
-                    </connections>
-                </searchDisplayController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1671.2" y="-278.41079460269867"/>
+            <point key="canvasLocation" x="1570" y="-278"/>
         </scene>
-        <!--View Controller-->
+        <!--Tallinn-->
         <scene sceneID="N4F-no-mr5">
             <objects>
-                <viewController id="FuR-9E-oZR" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="FuR-9E-oZR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8GR-yn-LnU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
-                                <rect key="frame" x="113.5" y="131.5" width="148.5" height="282.5"/>
+                                <rect key="frame" x="113.5" y="172" width="148.5" height="282.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.5" height="67"/>
@@ -217,7 +208,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DwO-9D-T5j"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wNK-vh-Yan">
+                    <navigationItem key="navigationItem" title="Tallinn" id="wNK-vh-Yan">
                         <barButtonItem key="rightBarButtonItem" image="star" id="yJ6-77-hJE">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="-7"/>
                         </barButtonItem>
@@ -227,22 +218,33 @@
             </objects>
             <point key="canvasLocation" x="2444" y="-278.41079460269867"/>
         </scene>
-        <!--View Controller-->
+        <!--Hej-->
         <scene sceneID="Q0y-RR-20O">
             <objects>
-                <viewController id="Mic-fL-xWc" sceneMemberID="viewController">
+                <viewController title="Hej" id="Mic-fL-xWc" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NRL-gq-maa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zLG-l4-caz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Mdk-TF-GHF"/>
+                    <navigationItem key="navigationItem" title="Search" id="Ykw-ca-nkt"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Hb5-r3-dfG" id="pZu-VU-gyp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Xt-EW-l9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Hb5-r3-dfG">
+                    <connections>
+                        <outlet property="delegate" destination="Mic-fL-xWc" id="Uca-uD-BYv"/>
+                        <outlet property="searchContentsController" destination="Mic-fL-xWc" id="OPR-vY-yoJ"/>
+                        <outlet property="searchResultsDataSource" destination="Mic-fL-xWc" id="G0z-Xk-dWW"/>
+                        <outlet property="searchResultsDelegate" destination="Mic-fL-xWc" id="i4g-W1-aXQ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="409" y="459"/>
+            <point key="canvasLocation" x="940" y="459.22038980509751"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AF2-fS-P0M">
@@ -251,12 +253,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="YGR-CN-Zr7"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uLV-f7-03B">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="kmy-9g-paB" kind="relationship" relationship="viewControllers" id="hoa-LW-MYJ"/>
-                        <segue destination="Mic-fL-xWc" kind="relationship" relationship="viewControllers" id="geH-cS-O8M"/>
+                        <segue destination="uJc-lM-43X" kind="relationship" relationship="viewControllers" id="geH-cS-O8M"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wks-md-7Xo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,8 +272,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kmy-9g-paB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="fYJ-NW-h0t"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nHB-xJ-rMF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nHB-xJ-rMF">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -280,7 +283,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9o-ha-iIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="-278"/>
+            <point key="canvasLocation" x="601" y="-278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="f9B-rl-cOO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uJc-lM-43X" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Mdk-TF-GHF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bZ5-vl-PgU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mic-fL-xWc" kind="relationship" relationship="rootViewController" id="lNt-wo-x3y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwi-p8-SFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="459"/>
         </scene>
     </scenes>
     <resources>
