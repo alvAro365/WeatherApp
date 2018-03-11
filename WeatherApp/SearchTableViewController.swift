@@ -14,7 +14,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: WebAPI
     
     func createJsonTask() {
-        let url = URL(string: "http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=d8b585f530bf87bf33de4f4939f30f63")
+        let url = URL(string: "http://samples.openweathermap.org/data/2.5/find?q=London&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
@@ -23,9 +23,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                     
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        print(jsonResult)
-                        print(jsonResult["name"]!!)
-                        print(jsonResult["main"]!!)
+                        
+                        if ((jsonResult as? [String : Any]) != nil) {
+                            if let dataArray = jsonResult["list"] as? [Any] {
+                                if let dictionary = dataArray.first! as? [String : Any] {
+                                    if let dictionary = dictionary["main"] as? [String : Any] {
+                                        print("Temperature is \(dictionary["temp"]!) ℃")
+                                    }
+                                }
+                            }
+                        }
                     } catch {
                         print("Json Processing Failed")
                     }
