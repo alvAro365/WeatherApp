@@ -15,6 +15,7 @@
 		24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */; };
 		24C5860B2052AB9D00554F8F /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */; };
 		24DC84FF205515A30009167B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC84FE205515A30009167B /* SearchViewController.swift */; };
+		24DC8501205526F60009167B /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DC8500205526F60009167B /* SearchTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		24DC84FE205515A30009167B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		24DC8500205526F60009167B /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */,
 				24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */,
 				24DC84FE205515A30009167B /* SearchViewController.swift */,
+				24DC8500205526F60009167B /* SearchTableViewController.swift */,
 				241E4D0F204C0FA5001048FC /* Main.storyboard */,
 				241E4D12204C0FA5001048FC /* Assets.xcassets */,
 				241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				241E4D0E204C0FA5001048FC /* WeatherAppViewController.swift in Sources */,
+				24DC8501205526F60009167B /* SearchTableViewController.swift in Sources */,
 				24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */,
 				24DC84FF205515A30009167B /* SearchViewController.swift in Sources */,
 				241E4D0C204C0FA5001048FC /* AppDelegate.swift in Sources */,
