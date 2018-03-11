@@ -11,12 +11,34 @@ import UIKit
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     // MARK: Properties
     var searchController: UISearchController!
+    // MARK: WebAPI
     
+    func createJsonTask() {
+        let url = URL(string: "http://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=d8b585f530bf87bf33de4f4939f30f63")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                if let urlContent = data {
+                    
+                    do {
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        print(jsonResult)
+                        print(jsonResult["name"]!!)
+                        print(jsonResult["main"]!!)
+                    } catch {
+                        print("Json Processing Failed")
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
-        
+        createJsonTask()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
