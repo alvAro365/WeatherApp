@@ -13,6 +13,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     var searchController: UISearchController!
 //    var search: String = "Tall"
     var places = ["Tallinn"]
+    var cities = [City]()
+
 
     // MARK: WebAPI
     func createJsonTask(search:String) {
@@ -45,7 +47,9 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
-        createJsonTask(search: "oslo")
+        
+        //createJsonTask(search: "oslo")
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -79,8 +83,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: SearchController functions
 
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            createJsonTask(search: searchText)
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            //createJsonTask(search: searchText)
+            City.cities(matching: searchText) { cities in self.cities = cities
+                self.tableView.reloadData()
+            }
+        
         }
         self.tableView.reloadData()
         
