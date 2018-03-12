@@ -14,7 +14,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: WebAPI
     
     func createJsonTask() {
-        let url = URL(string: "http://samples.openweathermap.org/data/2.5/find?q=London&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Tallinn&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
@@ -25,14 +25,19 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         
                         if ((jsonResult as? [String : Any]) != nil) {
-                            if let dataArray = jsonResult["list"] as? [Any] {
-                                if let dictionary = dataArray.first! as? [String : Any] {
-                                    if let dictionary = dictionary["main"] as? [String : Any] {
-                                        print("Temperature is \(dictionary["temp"]!) ℃")
-                                    }
-                                }
+                            if let dictionary = jsonResult["main"] as? [String : Any] {
+                                print("Temperature in \(jsonResult["name"]!!) is \(dictionary["temp"]!)")
                             }
+//                            if let dataArray = jsonResult["list"] as? [Any] {
+//                                if let dictionary = dataArray.first! as? [String : Any] {
+//                                    if let dictionary = dictionary["main"] as? [String : Any] {
+//                                        print("Temperature is \(dictionary["temp"]!) ℃")
+//                                    }
+//                                }
+//                            }
                         }
+                        print(jsonResult)
+                        print(jsonResult["name"]!!)
                     } catch {
                         print("Json Processing Failed")
                     }
