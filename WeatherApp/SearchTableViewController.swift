@@ -11,10 +11,12 @@ import UIKit
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     // MARK: Properties
     var searchController: UISearchController!
+//    var search: String = "Tall"
+    var places = ["Tallinn"]
+
     // MARK: WebAPI
-    
-    func createJsonTask() {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=Tallinn&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
+    func createJsonTask(search:String) {
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(search)&type=like&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
@@ -26,18 +28,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                         
                         if ((jsonResult as? [String : Any]) != nil) {
                             if let dictionary = jsonResult["main"] as? [String : Any] {
+                                self.places.append(jsonResult["name"]! as! String)
                                 print("Temperature in \(jsonResult["name"]!!) is \(dictionary["temp"]!)")
                             }
-//                            if let dataArray = jsonResult["list"] as? [Any] {
-//                                if let dictionary = dataArray.first! as? [String : Any] {
-//                                    if let dictionary = dictionary["main"] as? [String : Any] {
-//                                        print("Temperature is \(dictionary["temp"]!) ℃")
-//                                    }
-//                                }
-//                            }
                         }
                         print(jsonResult)
-                        print(jsonResult["name"]!!)
                     } catch {
                         print("Json Processing Failed")
                     }
@@ -50,7 +45,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
-        createJsonTask()
+        createJsonTask(search: "oslo")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -84,6 +79,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: SearchController functions
 
     func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            createJsonTask(search: searchText)
+        }
+        self.tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {
@@ -94,24 +93,23 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return places.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
 
-        // Configure the cell...
+        cell.place?.text = places[indexPath.row]
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
