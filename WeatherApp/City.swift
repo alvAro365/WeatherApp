@@ -36,15 +36,18 @@ extension City {
 extension City {
     
     static func cities(matching query: String, completion: ([City]) -> Void) {
-        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org/data/2.5")
-        searchURLComponents?.path = "/weather?"
-        searchURLComponents?.queryItems = [URLQueryItem(name: "q", value: query)]
+        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
+        searchURLComponents?.path = "/data/2.5/weather"
+        let queryItemQuery = URLQueryItem(name: "q", value: query)
+        let queryItemType = URLQueryItem(name: "type", value: "like")
+        let queryItemUnits = URLQueryItem(name:"units", value: "metric")
+        let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
+        searchURLComponents?.queryItems = [queryItemQuery, queryItemType, queryItemUnits, queryItemAppId]
+
         let searchURL = searchURLComponents?.url!
-        print("Hej")
         print(searchURL as Any!)
         
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(query)&type=like&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
-        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, _, _) in
+        let task = URLSession.shared.dataTask(with: searchURL!, completionHandler: { (data, _, _) in
             var cities: [City] = []
             
             if let data = data,
