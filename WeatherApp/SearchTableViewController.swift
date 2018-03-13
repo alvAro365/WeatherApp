@@ -86,11 +86,15 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             //createJsonTask(search: searchText)
             City.cities(matching: searchText) { cities in self.cities = cities
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                print("The amount of cities \(cities.count)")
             }
         
         }
-        self.tableView.reloadData()
+//        print("The amount of cities \(self.cities.count)")
+//        self.tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {
@@ -106,14 +110,14 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return places.count
+        return cities.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
-
-        cell.place?.text = places[indexPath.row]
+        
+        cell.place?.text = cities[indexPath.row].name
 
         return cell
     }
@@ -165,3 +169,5 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     */
 
 }
+
+

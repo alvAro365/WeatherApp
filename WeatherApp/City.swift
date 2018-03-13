@@ -9,33 +9,27 @@
 import Foundation
 
 struct City {
-//    enum Weather: String {
-//        case forecast, temperature, wind
-//    }
-    
     let name: String
-    let temperature: Any?
-    
 }
 
 extension City {
     init?(json: [String : Any]) {
-        guard let name = json["name"] as? String,
-            let temperatureJSON = json["main"] as? [String: Any],
-            let temperature = temperatureJSON["temp"],
-            let windJSON = json["wind"] as? [String: Any],
-            let wind = windJSON["speed"]
+        guard let name = json["name"] as? String
+//            let temperatureJSON = json["main"] as? [String: Any],
+//            let temperature = temperatureJSON["temp"],
+//            let windJSON = json["wind"] as? [String: Any],
+//            let wind = windJSON["speed"]
         else {
                 return nil
         }
         self.name = name
-        self.temperature = temperature
+        print("The name of the city is \(self.name)")
     }
 }
 
 extension City {
     
-    static func cities(matching query: String, completion: ([City]) -> Void) {
+    static func cities(matching query: String, completion: @escaping ([City]) -> Void) {
         var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
         searchURLComponents?.path = "/data/2.5/find"
         let queryItemQuery = URLQueryItem(name: "q", value: query)
@@ -48,7 +42,7 @@ extension City {
         print(searchURL as Any!)
         
         let task = URLSession.shared.dataTask(with: searchURL!, completionHandler: { (data, response, error) in
-            var cities: [City] = []
+            var cities = [City]()
             if error != nil {
                 print(error!)
             } else {
@@ -57,11 +51,14 @@ extension City {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
 //                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
-                            if let list = jsonResult["list"] as? [AnyObject] {
-                                for object in list {
-                                    print("Printing object \(object)")
-                                    print("**** The name of the object is \(object["name"]!!)")
-                                    if let temp = object["main"] as? [String : Any] {
+                            if let list = jsonResult["list"]! as? [[String: Any]] {
+                                for case let city in list {
+                                    if let city = City(json: city) {
+                                        cities.append(city)
+                                        print("******** \(cities.count)")
+                                    }
+                                    print("**** The name of the object is \(city["name"]!)")
+                                    if let temp = city["main"] as? [String : Any] {
                                         print("**** and temperature there is \(temp["temp"]!) degrees celsius")
                                     }
                                 }
@@ -72,11 +69,13 @@ extension City {
 //                                }
                             }
                         }
+
                     } catch {
                         print("JSON Processing Failed")
                     }
                 }
             }
+            completion(cities)
         })
         task.resume()
     }
