@@ -55,21 +55,27 @@ extension City {
                 if let urlContent = data {
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        print(jsonResult)
+//                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
-                            if let list = jsonResult["list"] as? [Any] {
-                                if let dictionary = list.first as? [String : Any] {
-                                    if let temp = dictionary["main"] as? [String : Any] {
-                                        print("Temperature in \(dictionary["name"]!) is \(temp["temp"]!)")
+                            if let list = jsonResult["list"] as? [AnyObject] {
+                                for object in list {
+                                    print("Printing object \(object)")
+                                    print("**** The name of the object is \(object["name"]!!)")
+                                    if let temp = object["main"] as? [String : Any] {
+                                        print("**** and temperature there is \(temp["temp"]!) degrees celsius")
                                     }
                                 }
+//                                if let dictionary = list.first as? [String : Any] {
+//                                    if let temp = dictionary["main"] as? [String : Any] {
+//                                        print("Temperature in \(dictionary["name"]!) is \(temp["temp"]!)")
+//                                    }
+//                                }
                             }
                         }
                     } catch {
                         print("JSON Processing Failed")
                     }
                 }
-                
             }
         })
         task.resume()
