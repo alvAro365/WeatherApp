@@ -33,7 +33,7 @@ extension City {
         var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
         searchURLComponents?.path = "/data/2.5/find"
         let queryItemQuery = URLQueryItem(name: "q", value: query)
-        let queryItemType = URLQueryItem(name: "type", value: "like")
+        let queryItemType = URLQueryItem(name: "type", value: "liki")
         let queryItemUnits = URLQueryItem(name:"units", value: "metric")
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
         searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]

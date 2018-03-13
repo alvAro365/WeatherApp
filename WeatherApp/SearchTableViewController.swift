@@ -11,48 +11,16 @@ import UIKit
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     // MARK: Properties
     var searchController: UISearchController!
-//    var search: String = "Tall"
-    var places = ["Tallinn"]
     var cities = [City]()
 
 
-    // MARK: WebAPI
-    func createJsonTask(search:String) {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=\(search)&type=like&units=metric&appid=d8b585f530bf87bf33de4f4939f30f63")
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil {
-                print(error!)
-            } else {
-                if let urlContent = data {
-                    
-                    do {
-                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        
-                        if ((jsonResult as? [String : Any]) != nil) {
-                            if let dictionary = jsonResult["main"] as? [String : Any] {
-                                self.places.append(jsonResult["name"]! as! String)
-                                print("Temperature in \(jsonResult["name"]!!) is \(dictionary["temp"]!)")
-                            }
-                        }
-                        print(jsonResult)
-                    } catch {
-                        print("Json Processing Failed")
-                    }
-                }
-            }
-        }
-        task.resume()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
-        
-        //createJsonTask(search: "oslo")
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -63,8 +31,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         }
     }
     // MARK: SearchBar delegate
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.showsCancelButton = false
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        cities.removeAll()
+        self.tableView.reloadData()
+        self.searchController.searchBar.resignFirstResponder()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            cities.removeAll()
+            self.tableView.reloadData()
+        }
     }
 
     func setupSearchController() {
@@ -91,19 +67,15 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
                 }
                 print("The amount of cities \(cities.count)")
             }
-        
         }
-//        print("The amount of cities \(self.cities.count)")
-//        self.tableView.reloadData()
-        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -113,15 +85,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         return cities.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
         
         cell.place?.text = cities[indexPath.row].name
-
         return cell
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
