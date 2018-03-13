@@ -10,45 +10,42 @@ import Foundation
 
 struct City {
     let name: String
+    let temperature: Float
+    let wind: Float
+
 }
 
 extension City {
     init?(json: [String : Any]) {
-        guard let name = json["name"] as? String
-//            let temperatureJSON = json["main"] as? [String: Any],
-//            let temperature = temperatureJSON["temp"],
-//            let windJSON = json["wind"] as? [String: Any],
-//            let wind = windJSON["speed"]
+        guard let name = json["name"] as? String,
+            let temperatureJSON = json["main"] as? [String: Float],
+            let temperature = temperatureJSON["temp"],
+            let windJSON = json["wind"] as? [String: Float],
+            let wind = windJSON["speed"]
         else {
                 return nil
         }
         self.name = name
-        print("The name of the city is \(self.name)")
+        self.temperature = temperature
+        self.wind = wind
+        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind)")
     }
 }
 
 extension City {
     
     static func cities(matching query: String, completion: @escaping ([City]) -> Void) {
-        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
-        searchURLComponents?.path = "/data/2.5/find"
-        let queryItemQuery = URLQueryItem(name: "q", value: query)
-        let queryItemType = URLQueryItem(name: "type", value: "liki")
-        let queryItemUnits = URLQueryItem(name:"units", value: "metric")
-        let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
-        searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
-
-        let searchURL = searchURLComponents?.url!
+        let searchURL = createSearchUrlComponents(query: query)
         print(searchURL as Any!)
         
-        let task = URLSession.shared.dataTask(with: searchURL!, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: searchURL, completionHandler: { (data, response, error) in
             var cities = [City]()
             if error != nil {
                 print(error!)
             } else {
                 if let urlContent = data {
                     do {
-                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: []) as AnyObject
 //                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
                             if let list = jsonResult["list"]! as? [[String: Any]] {
@@ -57,19 +54,9 @@ extension City {
                                         cities.append(city)
                                         print("******** \(cities.count)")
                                     }
-                                    print("**** The name of the object is \(city["name"]!)")
-                                    if let temp = city["main"] as? [String : Any] {
-                                        print("**** and temperature there is \(temp["temp"]!) degrees celsius")
-                                    }
                                 }
-//                                if let dictionary = list.first as? [String : Any] {
-//                                    if let temp = dictionary["main"] as? [String : Any] {
-//                                        print("Temperature in \(dictionary["name"]!) is \(temp["temp"]!)")
-//                                    }
-//                                }
                             }
                         }
-
                     } catch {
                         print("JSON Processing Failed")
                     }
@@ -78,6 +65,16 @@ extension City {
             completion(cities)
         })
         task.resume()
+    }
+    static func createSearchUrlComponents(query: String) -> URL {
+        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
+        searchURLComponents?.path = "/data/2.5/find"
+        let queryItemQuery = URLQueryItem(name: "q", value: query)
+        let queryItemType = URLQueryItem(name: "type", value: "like")
+        let queryItemUnits = URLQueryItem(name:"units", value: "metric")
+        let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
+        searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
+        return (searchURLComponents?.url)!
     }
 }
 

@@ -56,20 +56,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         // Sets this view controller as presenting view controller for the search interface
 //        definesPresentationContext = false
     }
-    // MARK: SearchController functions
-
+    // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            //createJsonTask(search: searchText)
             City.cities(matching: searchText) { cities in self.cities = cities
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                print("The amount of cities \(cities.count)")
             }
         }
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,6 +85,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
         
         cell.place?.text = cities[indexPath.row].name
+        let temp = Int(cities[indexPath.row].temperature)
+        cell.temp.text = "\(temp.description)℃"
+    
+        print("Wind: \(cities[indexPath.row].wind)")
         return cell
     }
 
