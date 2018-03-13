@@ -37,24 +37,40 @@ extension City {
     
     static func cities(matching query: String, completion: ([City]) -> Void) {
         var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
-        searchURLComponents?.path = "/data/2.5/weather"
+        searchURLComponents?.path = "/data/2.5/find"
         let queryItemQuery = URLQueryItem(name: "q", value: query)
         let queryItemType = URLQueryItem(name: "type", value: "like")
         let queryItemUnits = URLQueryItem(name:"units", value: "metric")
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
-        searchURLComponents?.queryItems = [queryItemQuery, queryItemType, queryItemUnits, queryItemAppId]
+        searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
 
         let searchURL = searchURLComponents?.url!
         print(searchURL as Any!)
         
-        let task = URLSession.shared.dataTask(with: searchURL!, completionHandler: { (data, _, _) in
+        let task = URLSession.shared.dataTask(with: searchURL!, completionHandler: { (data, response, error) in
             var cities: [City] = []
-            
-            if let data = data,
-            let json = try? JSONSerialization.jsonObject(with: data, options: []) as AnyObject {
-                print(json)
+            if error != nil {
+                print(error!)
+            } else {
+                if let urlContent = data {
+                    do {
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        print(jsonResult)
+                        if((jsonResult as? [String : Any]) != nil) {
+                            if let list = jsonResult["list"] as? [Any] {
+                                if let dictionary = list.first as? [String : Any] {
+                                    if let temp = dictionary["main"] as? [String : Any] {
+                                        print("Temperature in \(dictionary["name"]!) is \(temp["temp"]!)")
+                                    }
+                                }
+                            }
+                        }
+                    } catch {
+                        print("JSON Processing Failed")
+                    }
+                }
+                
             }
-        
         })
         task.resume()
     }
