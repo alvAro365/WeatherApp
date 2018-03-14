@@ -31,12 +31,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             self.searchController.searchBar.becomeFirstResponder()
         }
     }
+
     // MARK: TabBarController delegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Before: \(cities.count)")
-        print("Selected tab is: \(tabBarController.selectedIndex)")
+        searchController.isActive = false
         cities.removeAll()
-        print("After: \(cities.count)")
+        self.tableView.reloadData()
 
     }
 //    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -46,7 +46,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cities.removeAll()
         self.tableView.reloadData()
-        self.searchController.searchBar.resignFirstResponder()
+//        self.searchController.searchBar.resignFirstResponder()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil {

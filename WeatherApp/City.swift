@@ -40,8 +40,8 @@ extension City {
         
         let task = URLSession.shared.dataTask(with: searchURL, completionHandler: { (data, response, error) in
             var cities = [City]()
-            if error != nil {
-                print(error!)
+            if let theError = error {
+                print(theError)
             } else {
                 let options = JSONSerialization.ReadingOptions()
                 if let urlContent = data {
