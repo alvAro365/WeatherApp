@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate {
     // MARK: Properties
     var searchController: UISearchController!
     var cities = [City]()
@@ -18,6 +18,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
+        tabBarController?.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -30,6 +31,17 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             self.searchController.searchBar.becomeFirstResponder()
         }
     }
+    // MARK: TabBarController delegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Before: \(cities.count)")
+        print("Selected tab is: \(tabBarController.selectedIndex)")
+        cities.removeAll()
+        print("After: \(cities.count)")
+
+    }
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        return tabBarController.selectedIndex == 0
+//    }
     // MARK: SearchBar delegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cities.removeAll()
@@ -37,7 +49,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         self.searchController.searchBar.resignFirstResponder()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
+        if searchBar.text == nil {
+            cities.removeAll()
+            self.searchController.searchBar.resignFirstResponder()
+            self.tableView.reloadData()
+        } else if searchBar.text == "" {
             cities.removeAll()
             self.tableView.reloadData()
         }
@@ -87,6 +103,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         cell.place?.text = cities[indexPath.row].name
         let temp = Int(cities[indexPath.row].temperature)
         cell.temp.text = "\(temp.description)℃"
+        cell.forecast.text = "😇"
     
         print("Wind: \(cities[indexPath.row].wind)")
         return cell
@@ -127,7 +144,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -135,7 +152,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
 

@@ -43,10 +43,11 @@ extension City {
             if error != nil {
                 print(error!)
             } else {
+                let options = JSONSerialization.ReadingOptions()
                 if let urlContent = data {
                     do {
-                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: []) as AnyObject
-//                        print(jsonResult)
+                        let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: options) as AnyObject
+                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
                             if let list = jsonResult["list"]! as? [[String: Any]] {
                                 for case let city in list {
@@ -74,6 +75,7 @@ extension City {
         let queryItemUnits = URLQueryItem(name:"units", value: "metric")
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
         searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
+        
         return (searchURLComponents?.url)!
     }
 }
