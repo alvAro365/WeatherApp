@@ -100,10 +100,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         
         cell.place?.text = cities[indexPath.row].name
         let temp = Int(cities[indexPath.row].temperature)
-        cell.temp.text = "\(temp.description)℃"
+        cell.temp.text = "\(temp)℃"
         cell.forecast.text = cities[indexPath.row].icon
-
-        print("Wind: \(cities[indexPath.row].wind)")
         return cell
     }
 
@@ -147,11 +145,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    
 
+        super.prepare(for: segue, sender: sender)
+        let detailViewController = segue.destination as? DetailViewController
+        let selectedCityCell = sender as? DataTableViewCell
+        let indexPath = tableView.indexPath(for: selectedCityCell!)
+        let selectedCity = cities[(indexPath?.row)!]
+        detailViewController?.city = selectedCity
+        
+        
+    }
 }
 
 

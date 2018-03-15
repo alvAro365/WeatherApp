@@ -157,7 +157,7 @@
         <!--Tallinn-->
         <scene sceneID="N4F-no-mr5">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="FuR-9E-oZR" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8GR-yn-LnU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -213,10 +213,16 @@
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="-7"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cityLable" destination="Wkv-Jq-lsM" id="agZ-Se-chh"/>
+                        <outlet property="iconLabel" destination="jR0-fW-AG6" id="NVY-gq-tLC"/>
+                        <outlet property="temperatureLabel" destination="Sz6-jy-tuL" id="qId-Pl-dd6"/>
+                        <outlet property="windLabel" destination="iAx-Vm-2ct" id="TSm-T1-yfh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ota-SA-Bni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2444" y="-278.41079460269867"/>
+            <point key="canvasLocation" x="1569" y="516"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AF2-fS-P0M">
@@ -322,6 +328,7 @@
                                     <outlet property="forecast" destination="7He-Vt-DKF" id="Umr-g2-elQ"/>
                                     <outlet property="place" destination="Stt-yX-wI5" id="V6z-OQ-zlh"/>
                                     <outlet property="temp" destination="wNC-p2-0YA" id="x2a-Ic-QCD"/>
+                                    <segue destination="FuR-9E-oZR" kind="show" identifier="ShowDetail" id="u8v-cT-DKF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -374,4 +381,7 @@
     <resources>
         <image name="star" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="u8v-cT-DKF"/>
+    </inferredMetricsTieBreakers>
 </document>
