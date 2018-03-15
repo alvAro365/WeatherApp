@@ -13,7 +13,6 @@ struct City {
     let temperature: Float
     let wind: Float
     let icon: String
-    
     let icons = ["01d": "☀️",
                  "02d": "⛅️",
                  "03d": "☁️",
@@ -52,8 +51,7 @@ extension City {
         self.temperature = temperature
         self.wind = wind
         self.icon = self.icons[iconID]!
-        print("Icon: \(iconID)")
-        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind)")
+        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind), Icon: \(iconID)")
     }
 }
 
@@ -72,7 +70,7 @@ extension City {
                 if let urlContent = data {
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: options) as AnyObject
-                        print(jsonResult)
+//                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
                             if let list = jsonResult["list"]! as? [[String: Any]] {
                                 for case let city in list {
@@ -100,34 +98,7 @@ extension City {
         let queryItemUnits = URLQueryItem(name:"units", value: "metric")
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
         searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
-        
         return (searchURLComponents?.url)!
-    }
-    
-    
-    static func getWeatherIcon(icon: String) -> String {
-//        let icons = "☀️☁️🌧🌙🌦⛅️🌤🌨🌩🌪 🌫🌬⛈"
-        
-        let icons = ["01d": "☀️",
-                     "02d": "⛅️",
-                     "03d": "☁️",
-                     "04d": "☁️",
-                     "09d": "🌧",
-                     "10d": "🌦",
-                     "11d": "🌩",
-                     "13d": "🌨",
-                     "50d": "🌫",
-                     "01n": "🌙",
-                     "02n": "☁️",
-                     "03n": "☁️",
-                     "04n": "☁️",
-                     "09n": "🌧",
-                     "10n": "🌧",
-                     "11n": "🌩",
-                     "13n": "🌨",
-                     "50n": "🌫"]
-        
-        return icons["icon"]!
     }
 }
 

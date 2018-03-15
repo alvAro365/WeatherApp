@@ -13,7 +13,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     var searchController: UISearchController!
     var cities = [City]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
@@ -93,7 +92,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return cities.count
     }
 
@@ -104,8 +102,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         let temp = Int(cities[indexPath.row].temperature)
         cell.temp.text = "\(temp.description)℃"
         cell.forecast.text = cities[indexPath.row].icon
-//        cell.forecast.text = "☀️"
-    
+
         print("Wind: \(cities[indexPath.row].wind)")
         return cell
     }
