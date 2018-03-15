@@ -103,7 +103,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         cell.place?.text = cities[indexPath.row].name
         let temp = Int(cities[indexPath.row].temperature)
         cell.temp.text = "\(temp.description)℃"
-        cell.forecast.text = "😇"
+        cell.forecast.text = cities[indexPath.row].icon
+//        cell.forecast.text = "☀️"
     
         print("Wind: \(cities[indexPath.row].wind)")
         return cell
