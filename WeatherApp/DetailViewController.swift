@@ -21,14 +21,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let city = city {
-            navigationItem.title = city.name
-            cityLable.text = city.name
-            let temp = Int(city.temperature)
-            temperatureLabel.text = "\(temp)℃"
-            windLabel.text = "\(city.wind) m/s"
-            iconLabel.text = city.icon
-        }
+        setupViews()
 
     }
 
@@ -51,6 +44,7 @@ class DetailViewController: UIViewController {
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         sender.image = #imageLiteral(resourceName: "star-filled")
         favorites.append(city!)
+        // TODO: check if saved file exists before merging arrays
         favorites += Storage.load([City].self)
         
         if Storage.save(favorites) {
@@ -58,6 +52,19 @@ class DetailViewController: UIViewController {
             print(favorites.count)
         } else {
             print("Saving failed")
+        }
+    }
+    
+    // MARK: Private functions
+    func setupViews() -> Void {
+        
+        if let city = city {
+            navigationItem.title = city.name
+            cityLable.text = city.name
+            let temp = Int(city.temperature)
+            temperatureLabel.text = "\(temp)℃"
+            windLabel.text = "\(city.wind) m/s"
+            iconLabel.text = city.icon
         }
     }
 }

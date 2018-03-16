@@ -129,6 +129,7 @@
                                             <outlet property="forecast" destination="YS3-fL-7XI" id="2F6-CG-0Wn"/>
                                             <outlet property="place" destination="bb8-Uo-enH" id="s41-1L-Gwm"/>
                                             <outlet property="temp" destination="tvr-hM-Bnh" id="Jo5-C0-EI5"/>
+                                            <segue destination="FuR-9E-oZR" kind="show" identifier="showFavoriteDetails" id="gcs-es-Tji"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -372,4 +373,7 @@
     <resources>
         <image name="star" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gcs-es-Tji"/>
+    </inferredMetricsTieBreakers>
 </document>

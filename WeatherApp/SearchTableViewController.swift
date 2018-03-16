@@ -45,7 +45,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cities.removeAll()
         self.tableView.reloadData()
-//        self.searchController.searchBar.resignFirstResponder()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil {
@@ -156,6 +155,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             detailViewController?.city = selectedCity
         }
     }
+    // TODO: clear search on tab click
 }
 
 
