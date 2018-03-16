@@ -40,6 +40,12 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
             print("The count is: \(String(describing: favoriteCities?.count))")
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        favoriteCities = Storage.load([City].self)
+        tableView.reloadData()
+    }
     
     func setupSearchController() {
         searchController = UISearchController(searchResultsController: nil)

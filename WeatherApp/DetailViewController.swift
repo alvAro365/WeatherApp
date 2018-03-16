@@ -51,6 +51,7 @@ class DetailViewController: UIViewController {
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         sender.image = #imageLiteral(resourceName: "star-filled")
         favorites.append(city!)
+        favorites += Storage.load([City].self)
         
         if Storage.save(favorites) {
             print("Saving succeeded")
