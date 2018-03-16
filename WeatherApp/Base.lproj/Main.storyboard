@@ -83,19 +83,19 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="OyA-ME-ZbU">
                                                     <rect key="frame" x="20" y="0.0" width="322" height="43.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Lisbon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb8-Uo-enH">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb8-Uo-enH">
                                                             <rect key="frame" x="0.0" y="0.0" width="107.5" height="43.5"/>
                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS3-fL-7XI">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS3-fL-7XI">
                                                             <rect key="frame" x="107.5" y="0.0" width="107" height="43.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20℃" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvr-hM-Bnh">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvr-hM-Bnh">
                                                             <rect key="frame" x="214.5" y="0.0" width="107.5" height="43.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -129,7 +129,6 @@
                                             <outlet property="forecast" destination="YS3-fL-7XI" id="2F6-CG-0Wn"/>
                                             <outlet property="place" destination="bb8-Uo-enH" id="s41-1L-Gwm"/>
                                             <outlet property="temp" destination="tvr-hM-Bnh" id="Jo5-C0-EI5"/>
-                                            <segue destination="FuR-9E-oZR" kind="show" id="qOG-xY-32z"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -152,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570" y="-278"/>
+            <point key="canvasLocation" x="1742" y="-278"/>
         </scene>
         <!--Tallinn-->
         <scene sceneID="N4F-no-mr5">
@@ -211,6 +210,9 @@
                     <navigationItem key="navigationItem" title="Tallinn" id="wNK-vh-Yan">
                         <barButtonItem key="rightBarButtonItem" image="star" id="yJ6-77-hJE">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="-7"/>
+                            <connections>
+                                <action selector="saveAsFavorite:" destination="FuR-9E-oZR" id="to2-nP-bRR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -236,32 +238,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="kmy-9g-paB" kind="relationship" relationship="viewControllers" id="hoa-LW-MYJ"/>
+                        <segue destination="Y9P-ch-PNC" kind="relationship" relationship="viewControllers" id="xgC-gg-tjc"/>
                         <segue destination="tCH-v5-Asx" kind="relationship" relationship="viewControllers" id="S0X-r5-M8M"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wks-md-7Xo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-462" y="-278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="klH-6G-0Df">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kmy-9g-paB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="fYJ-NW-h0t"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nHB-xJ-rMF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eO6-oV-3rc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q9o-ha-iIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="601" y="-278"/>
         </scene>
         <!--Search-->
         <scene sceneID="pRk-Lc-GAC">
@@ -282,19 +265,19 @@
                                         <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="MQQ-bg-5Tg">
                                             <rect key="frame" x="20" y="0.0" width="321" height="43.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Lisbon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-yX-wI5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-yX-wI5">
                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="43.5"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7He-Vt-DKF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7He-Vt-DKF">
                                                     <rect key="frame" x="107" y="0.0" width="107" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.2℃" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNC-p2-0YA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNC-p2-0YA">
                                                     <rect key="frame" x="214" y="0.0" width="107" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -328,7 +311,7 @@
                                     <outlet property="forecast" destination="7He-Vt-DKF" id="Umr-g2-elQ"/>
                                     <outlet property="place" destination="Stt-yX-wI5" id="V6z-OQ-zlh"/>
                                     <outlet property="temp" destination="wNC-p2-0YA" id="x2a-Ic-QCD"/>
-                                    <segue destination="FuR-9E-oZR" kind="show" identifier="ShowDetail" id="u8v-cT-DKF"/>
+                                    <segue destination="FuR-9E-oZR" kind="show" identifier="detailView" id="hUW-9R-Mht"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -339,19 +322,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="mQe-dY-ZaF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="YcO-jM-zyu" id="wQ9-Jy-nVN"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrk-tW-shZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="YcO-jM-zyu">
-                    <connections>
-                        <outlet property="delegate" destination="wYh-iO-LSq" id="qGn-VO-3xm"/>
-                        <outlet property="searchContentsController" destination="wYh-iO-LSq" id="TTh-CV-N4A"/>
-                        <outlet property="searchResultsDataSource" destination="wYh-iO-LSq" id="7mn-wR-TJn"/>
-                        <outlet property="searchResultsDelegate" destination="wYh-iO-LSq" id="4CY-7g-LBs"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="601" y="516"/>
         </scene>
@@ -377,11 +349,27 @@
             </objects>
             <point key="canvasLocation" x="-382" y="516"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Kcu-X7-gs9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y9P-ch-PNC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="IBb-ED-TO5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tHA-mo-1OB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eZC-4C-dH8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t8B-Fz-6Na" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766" y="-278"/>
+        </scene>
     </scenes>
     <resources>
         <image name="star" width="50" height="50"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="u8v-cT-DKF"/>
-    </inferredMetricsTieBreakers>
 </document>

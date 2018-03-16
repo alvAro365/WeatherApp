@@ -8,12 +8,16 @@
 
 import Foundation
 
-struct City {
+
+struct City: Codable {
+    
     let name: String
     let temperature: Float
     let wind: Float
     let icon: String
-    let icons = ["01d": "☀️",
+    var favorites =  [City]()
+
+    private let icons = ["01d": "☀️",
                  "02d": "⛅️",
                  "03d": "☁️",
                  "04d": "☁️",
@@ -90,7 +94,7 @@ extension City {
         })
         task.resume()
     }
-    static func createSearchUrlComponents(query: String) -> URL {
+    private static func createSearchUrlComponents(query: String) -> URL {
         var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
         searchURLComponents?.path = "/data/2.5/find"
         let queryItemQuery = URLQueryItem(name: "q", value: query)
@@ -100,7 +104,11 @@ extension City {
         searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
         return (searchURLComponents?.url)!
     }
+    
+    
+    
 }
+
 
 
 

@@ -11,6 +11,9 @@ import UIKit
 class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UITableViewDelegate {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
+    var city: City?
+    var test: String = ""
+    var favoriteCities: [City]?
     let data = ["New York": ["forecast": "☁️", "temp": "20℃"],
                  "Lisbon": ["forecast": "☀️", "temp": "30℃"],
         "Paris": ["forecast": "🌧", "temp": "5℃"]]
@@ -31,6 +34,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
         tableView.delegate = self
 //        filteredData = data
         setupSearchController()
+        if FileManager.default.fileExists(atPath: Storage.ArchiveURL.path) {
+            favoriteCities = Storage.load([City].self)
+            tableView.reloadData()
+            print("The count is: \(String(describing: favoriteCities?.count))")
+        }
     }
     
     func setupSearchController() {
@@ -48,25 +56,32 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell") as! DataTableViewCell
-        
-        let keyValue = Array(favorites)[indexPath.row].key
-        let values = favorites[keyValue]
-        cell.place?.text = keyValue
-        cell.forecast.text = values?["forecast"]
-        cell.temp.text = values?["temp"]
+        if let favorites = favoriteCities {
+            print("***** \(favorites.count)")
+            let city = favoriteCities![indexPath.row]
+            cell.forecast.text = city.icon
+            cell.place.text = city.name
+            let temp = Int(city.temperature)
+            cell.temp.text = "\(temp)℃"
+        }
+//        let keyValue = Array(favorites)[indexPath.row].key
+//        let values = favorites[keyValue]
+//        cell.place?.text = keyValue
+//        cell.forecast.text = values?["forecast"]
+//        cell.temp.text = values?["temp"]
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites.count
+        return (favoriteCities?.count)!
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     // MARK: Custom views
-  func tableView(_ tableView: UITableView,
+   func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableCell(withIdentifier: "TitleCell")
         return headerView
@@ -81,6 +96,21 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UISearc
             tableView.reloadData()
         }
     }
+    // MARK: Navigation
+//    @IBAction func unwindToFavorites(sender: UIStoryboardSegue) {
+//
+//        if let sourceViewController = sender.source as? DetailViewController {
+//            city = sourceViewController.city
+////            print(city!)
+////            favoriteCities.append(city!)
+//            let newIndexPath = IndexPath(row: favoriteCities.count, section: 0)
+//            favoriteCities.append(city!)
+//            print("Favorites count: \(favoriteCities.count)")
+//            tableView.insertRows(at: [newIndexPath], with: .automatic)
+////            self.tableView.reloadData()
+//        }
+//        print(test)
+//    }
 }
 
 

@@ -144,16 +144,17 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         super.prepare(for: segue, sender: sender)
-        let detailViewController = segue.destination as? DetailViewController
-        let selectedCityCell = sender as? DataTableViewCell
-        let indexPath = tableView.indexPath(for: selectedCityCell!)
-        let selectedCity = cities[(indexPath?.row)!]
-        detailViewController?.city = selectedCity
-        
-        
+        if segue.identifier == "detailView" {
+            let detailViewController = segue.destination as? DetailViewController
+            let selectedCityCell = sender as? DataTableViewCell
+            let indexPath = tableView.indexPath(for: selectedCityCell!)
+            let selectedCity = cities[(indexPath?.row)!]
+            detailViewController?.city = selectedCity
+        }
     }
 }
 
