@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate {
+class SearchTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate, UINavigationControllerDelegate {
     // MARK: Properties
     var searchController: UISearchController!
     var cities = [City]()
@@ -24,16 +24,35 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        self.searchController.searchBar.becomeFirstResponder()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        print("viewWillDisappear")
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("******viewDidAppear")
         DispatchQueue.main.async {
             self.searchController.searchBar.becomeFirstResponder()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        searchController.isActive = false
+        print("***View did disappear")
+        cities.removeAll()
+        self.tableView.reloadData()
+        
     }
 
     // MARK: TabBarController delegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         searchController.isActive = false
+        self.searchController.searchBar.resignFirstResponder()
+        print("TabBar didSelect")
         cities.removeAll()
         self.tableView.reloadData()
 
@@ -53,8 +72,17 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             self.tableView.reloadData()
         } else if searchBar.text == "" {
             cities.removeAll()
+//            self.searchController.searchBar.resignFirstResponder()
             self.tableView.reloadData()
         }
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("searchBarTextDidEndEditing")
+        searchController.isActive = false
+        cities.removeAll()
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+        
     }
 
     func setupSearchController() {
@@ -152,9 +180,19 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
             let selectedCityCell = sender as? DataTableViewCell
             let indexPath = tableView.indexPath(for: selectedCityCell!)
             let selectedCity = cities[(indexPath?.row)!]
+//            cities.removeAll()
             detailViewController?.city = selectedCity
+//            self.searchController.searchBar.resignFirstResponder()
+//            searchController.isActive = false
+//            self.tableView.reloadData()
         }
     }
+    
+    // MARK: NavigationControllerDelegate
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        print("hei")
+    }
+    
     // TODO: clear search on tab click
 }
 

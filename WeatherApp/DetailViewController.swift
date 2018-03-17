@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Properties
     var city: City? = nil
     var favorites = [City]()
@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.delegate = self
         setupViews()
 
     }
@@ -68,5 +69,8 @@ class DetailViewController: UIViewController {
             windLabel.text = "\(city.wind) m/s"
             iconLabel.text = city.icon
         }
+    }
+    // MARK: TabBarControllerDelegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
     }
 }

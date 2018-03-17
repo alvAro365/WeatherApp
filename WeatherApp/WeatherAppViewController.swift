@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherAppViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WeatherAppViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     var city: City?
@@ -95,6 +95,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     // TODO: clear search on tab click
+    // MARK: TabBarController delegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+    }
+    
 }
 
 
