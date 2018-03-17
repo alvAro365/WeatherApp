@@ -10,9 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Properties
-    var city: City? = nil
+    var city: City?
     var favorites = [City]()
-    var test: String = "Test funkar"
     @IBOutlet weak var cityLable: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
@@ -69,8 +68,5 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             windLabel.text = "\(city.wind) m/s"
             iconLabel.text = city.icon
         }
-    }
-    // MARK: TabBarControllerDelegate
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
     }
 }

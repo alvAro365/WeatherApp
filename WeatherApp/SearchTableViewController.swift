@@ -26,7 +26,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("******viewDidAppear")
         DispatchQueue.main.async {
             self.searchController.searchBar.becomeFirstResponder()
         }
@@ -34,12 +33,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     // MARK: SearchBar delegate
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("searchBarTextDidEndEditing")
         searchController.isActive = false
         cities.removeAll()
         searchBar.resignFirstResponder()
         tableView.reloadData()
-        
     }
     
     // MARK: Helper methods

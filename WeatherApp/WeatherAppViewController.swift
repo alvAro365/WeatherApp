@@ -22,14 +22,14 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
 //        setupSearchController()
-        if FileManager.default.fileExists(atPath: Storage.ArchiveURL.path) {
+        if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if FileManager.default.fileExists(atPath: Storage.ArchiveURL.path) {
+        if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
@@ -83,7 +83,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
 //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showFavoriteDetails" {
             let detailViewController = segue.destination as? DetailViewController
@@ -94,12 +93,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
-    // TODO: clear search on tab click
-    // MARK: TabBarController delegate
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
-    }
-    
 }
 
 
