@@ -12,6 +12,10 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Properties
     var city: City?
     var favorites = [City]()
+    var imageView: UIImageView?
+    var animator: UIDynamicAnimator?
+//    let gravity = UIGravityBehavior()
+    var clothes: [UIImageView]?
     @IBOutlet weak var cityLable: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
@@ -23,6 +27,8 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         super.viewDidLoad()
         tabBarController?.delegate = self
         setupViews()
+        addImage()
+        createAnimatorBehavior()
 
     }
 
@@ -63,6 +69,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
+        
         sender.image = #imageLiteral(resourceName: "star-filled")
         favorites.append(city!)
         // TODO: check if saved file exists before merging arrays
@@ -90,4 +97,29 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             iconLabel.text = city.icon
         }
     }
+    
+    func addImage() {
+        imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 100, height: 100))
+        imageView?.image = UIImage(named: "jeans")
+        clothes = [UIImageView]()
+        clothes?.append(imageView!)
+        self.view.addSubview(imageView!)
+    }
+    
+    func createAnimatorBehavior() {
+        animator = UIDynamicAnimator(referenceView: self.view)
+        let gravity = UIGravityBehavior(items: clothes!)
+        let collider = UICollisionBehavior()
+        animator?.addBehavior(gravity)
+        collider.addItem(imageView!)
+        collider.translatesReferenceBoundsIntoBoundary = true
+        animator?.addBehavior(collider)
+        
+//        let collision = UICollisionBehavior(items: clothes!)
+        
+        
+//        collision.collisionMode = .everything
+//        animator?.addBehavior(collision)
+    }
+    
 }
