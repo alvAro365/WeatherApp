@@ -154,7 +154,7 @@
             </objects>
             <point key="canvasLocation" x="1742" y="-278"/>
         </scene>
-        <!--Tallinn-->
+        <!--Detail View Controller-->
         <scene sceneID="N4F-no-mr5">
             <objects>
                 <viewController id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
-                                <rect key="frame" x="113.5" y="152.5" width="148.5" height="282.5"/>
+                                <rect key="frame" x="113.5" y="131.5" width="148.5" height="282.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.5" height="67"/>
@@ -208,7 +208,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DwO-9D-T5j"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tallinn" id="wNK-vh-Yan">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="wNK-vh-Yan">
                         <barButtonItem key="rightBarButtonItem" image="star" id="yJ6-77-hJE">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-10" maxY="-7"/>
                             <connections>

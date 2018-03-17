@@ -44,16 +44,22 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Move view out of the view
-        centerAlignStackView.constant -= view.bounds.width
+        centerAlignStackView.constant += view.bounds.width
+        iconLabel.isHidden = true
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-            self.centerAlignStackView.constant += self.view.bounds.width
+            self.centerAlignStackView.constant -= self.view.bounds.width
             self.view.layoutIfNeeded()
         }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
+            self.iconLabel.isHidden = false
+            }, completion: nil)
+        
     }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
@@ -76,7 +82,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     func setupViews() -> Void {
         
         if let city = city {
-            navigationItem.title = city.name
+//            navigationItem.title = city.name
             cityLable.text = city.name
             let temp = Int(city.temperature)
             temperatureLabel.text = "\(temp)℃"
