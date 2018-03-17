@@ -25,8 +25,7 @@ class Storage {
     }
     
     static func load<T: Decodable>(_ type: T.Type) -> T {
-        // TODO: check if file exists
-        
+
         if let data = FileManager.default.contents(atPath: ArchiveURL.path) {
             let decoder = JSONDecoder()
             do {
@@ -38,6 +37,10 @@ class Storage {
         } else {
             fatalError("No data at \(ArchiveURL.path)")
         }
+    }
+    
+    static func fileExists() -> Bool {
+        return FileManager.default.fileExists(atPath: ArchiveURL.path)
     }
 }
 

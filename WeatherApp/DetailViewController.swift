@@ -45,7 +45,9 @@ class DetailViewController: UIViewController {
         sender.image = #imageLiteral(resourceName: "star-filled")
         favorites.append(city!)
         // TODO: check if saved file exists before merging arrays
-        favorites += Storage.load([City].self)
+        if Storage.fileExists() {
+         favorites += Storage.load([City].self)
+        } 
         
         if Storage.save(favorites) {
             print("Saving succeeded")
