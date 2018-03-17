@@ -17,6 +17,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var saveFavorite: UIBarButtonItem!
     @IBOutlet weak var iconLabel: UILabel!
+    @IBOutlet weak var centerAlignStackView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,21 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
 //        let mainViewController = segue.destination as? WeatherAppViewController
 //        mainViewController?.city = city!
 //    }
+    // MARK: ViewController Delegate
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Move view out of the view
+        centerAlignStackView.constant -= view.bounds.width
+        
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            self.centerAlignStackView.constant += self.view.bounds.width
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         sender.image = #imageLiteral(resourceName: "star-filled")
