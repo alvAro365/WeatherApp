@@ -157,13 +157,13 @@
         <!--Tallinn-->
         <scene sceneID="N4F-no-mr5">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8GR-yn-LnU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
-                                <rect key="frame" x="113.5" y="172" width="148.5" height="282.5"/>
+                                <rect key="frame" x="113.5" y="152.5" width="148.5" height="282.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.5" height="67"/>
