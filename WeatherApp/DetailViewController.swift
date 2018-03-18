@@ -104,8 +104,10 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func addImage() {
+        // TODO: fix hardcoding values
+        let imageX = self.view.bounds.width / 2 - 50.0
 //        imageView = UIImageView(frame: CGRect(x: 50, y: 100, width: 50, height: 50))
-        sunglassesImage = UIImageView(frame: CGRect(x: 138, y: -500, width: 100, height: 100))
+        sunglassesImage = UIImageView(frame: CGRect(x: imageX, y: -100, width: 100, height: 100))
 //        imageView?.image = UIImage(named: "jeans")
         sunglassesImage?.image = UIImage(named: "sunglasses")
         clothes = [UIImageView]()
@@ -123,7 +125,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
 //        collider.addItem(imageView!)
         collider.addItem(sunglassesImage!)
 //        let border = self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height)!
-        collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: 550.0), to: CGPoint(x: 200, y: 550))
+        collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: 550.0), to: CGPoint(x: self.view.bounds.width, y: 550))
 //        collider.translatesReferenceBoundsIntoBoundary = true
 
 //        let collision = UICollisionBehavior(items: clothes!)
