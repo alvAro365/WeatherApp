@@ -13,6 +13,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     var city: City?
     var favorites = [City]()
     var imageView: UIImageView?
+    var sunglassesImage: UIImageView?
     var animator: UIDynamicAnimator?
 //    let gravity = UIGravityBehavior()
     var clothes: [UIImageView]?
@@ -28,7 +29,10 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         tabBarController?.delegate = self
         setupViews()
         addImage()
-        createAnimatorBehavior()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.createAnimatorBehavior()
+        })
+//        createAnimatorBehavior()
 
     }
 
@@ -66,6 +70,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             self.iconLabel.isHidden = false
             }, completion: nil)
         
+        
     }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
@@ -99,11 +104,15 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func addImage() {
-        imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 100, height: 100))
-        imageView?.image = UIImage(named: "jeans")
+//        imageView = UIImageView(frame: CGRect(x: 50, y: 100, width: 50, height: 50))
+        sunglassesImage = UIImageView(frame: CGRect(x: 138, y: -500, width: 100, height: 100))
+//        imageView?.image = UIImage(named: "jeans")
+        sunglassesImage?.image = UIImage(named: "sunglasses")
         clothes = [UIImageView]()
-        clothes?.append(imageView!)
-        self.view.addSubview(imageView!)
+//        clothes?.append(imageView!)
+        clothes?.append(sunglassesImage!)
+//        self.view.addSubview(imageView!)
+        self.view.addSubview(sunglassesImage!)
     }
     
     func createAnimatorBehavior() {
@@ -111,15 +120,15 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         let gravity = UIGravityBehavior(items: clothes!)
         let collider = UICollisionBehavior()
         animator?.addBehavior(gravity)
-        collider.addItem(imageView!)
-        collider.translatesReferenceBoundsIntoBoundary = true
-        animator?.addBehavior(collider)
-        
+//        collider.addItem(imageView!)
+        collider.addItem(sunglassesImage!)
+//        let border = self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height)!
+        collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: 550.0), to: CGPoint(x: 200, y: 550))
+//        collider.translatesReferenceBoundsIntoBoundary = true
+
 //        let collision = UICollisionBehavior(items: clothes!)
-        
-        
-//        collision.collisionMode = .everything
-//        animator?.addBehavior(collision)
+        collider.collisionMode = .everything
+        animator?.addBehavior(collider)
     }
     
 }
