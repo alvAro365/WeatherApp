@@ -13,6 +13,7 @@
 		241E4D11204C0FA5001048FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D0F204C0FA5001048FC /* Main.storyboard */; };
 		241E4D13204C0FA5001048FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D12204C0FA5001048FC /* Assets.xcassets */; };
 		241E4D16204C0FA5001048FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */; };
+		245AAA85205FB6EF00AC9F6B /* ChartBartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245AAA84205FB6EF00AC9F6B /* ChartBartViewController.swift */; };
 		24C585EB204DBA4A00554F8F /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */; };
 		24C5860B2052AB9D00554F8F /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */; };
 		24CF3222205A7FC50061AAAA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF3221205A7FC50061AAAA /* DetailViewController.swift */; };
@@ -29,6 +30,7 @@
 		241E4D12204C0FA5001048FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		241E4D15204C0FA5001048FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		241E4D17204C0FA5001048FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		245AAA84205FB6EF00AC9F6B /* ChartBartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBartViewController.swift; sourceTree = "<group>"; };
 		24C585EA204DBA4A00554F8F /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		24C5860A2052AB9D00554F8F /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		24CF3221205A7FC50061AAAA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				24DC8500205526F60009167B /* SearchTableViewController.swift */,
 				24DC8502205689990009167B /* City.swift */,
 				24D4DA8C205C0E34003BEF60 /* Storage.swift */,
+				245AAA84205FB6EF00AC9F6B /* ChartBartViewController.swift */,
 				241E4D0F204C0FA5001048FC /* Main.storyboard */,
 				241E4D12204C0FA5001048FC /* Assets.xcassets */,
 				241E4D14204C0FA5001048FC /* LaunchScreen.storyboard */,
@@ -241,6 +244,7 @@
 				241E4D0C204C0FA5001048FC /* AppDelegate.swift in Sources */,
 				24D4DA8D205C0E34003BEF60 /* Storage.swift in Sources */,
 				24C5860B2052AB9D00554F8F /* DataTableViewCell.swift in Sources */,
+				245AAA85205FB6EF00AC9F6B /* ChartBartViewController.swift in Sources */,
 				24DC8503205689990009167B /* City.swift in Sources */,
 				24CF3222205A7FC50061AAAA /* DetailViewController.swift in Sources */,
 			);
