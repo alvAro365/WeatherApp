@@ -19,7 +19,7 @@ class ChartBartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        barChartUpdate()
+//        barChartUpdate()
         // Do any additional setup after loading the view.
     }
 

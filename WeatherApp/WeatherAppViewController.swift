@@ -13,17 +13,40 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     var city: City?
     var favoriteCities: [City]? = []
+    var citiesToCompare: [City]? = []
 //    var filteredData = [String: [String: String]]()
+    @IBOutlet weak var actionButton: UIBarButtonItem!
     var searchController: UISearchController!
+    var indexPathsForSelectedRows: [NSIndexPath]?
+    var compareButton: UIBarButtonItem?
     
     // MARK: Private cunctions
+    
+    func updateCompareButtonStatus() {
+        if tableView.isEditing {
+            if let selection = tableView.indexPathsForSelectedRows {
+                if selection.count >= 2 {
+                    
+//                    actionButton.title = "Show(\(selection.count))"
+                    actionButton.isEnabled = true
+                } else if selection.count == 1  {
+                    actionButton.isEnabled = false
+//                    actionButton.title = "Show(\(selection.count))"
+                }
+            } else {
+//                actionButton.title = "Show(0)"
+                actionButton.isEnabled = false
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
 //        setupSearchController()
-        let editButton = UIBarButtonItem(title: "Compare", style: .plain, target: self, action: #selector(toggleEditing))
-        navigationItem.rightBarButtonItem = editButton
+//        compareButton  = UIBarButtonItem(title: "Compare", style: .plain, target: self, action: #selector(toggleEditing))
+//        navigationItem.rightBarButtonItem = compareButton
         tableView.allowsMultipleSelectionDuringEditing = true
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
@@ -32,16 +55,41 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if (favoriteCities?.count)! < 2 {
+            actionButton.isEnabled = false
+        } else {
+            actionButton.isEnabled = true
+        }
+        
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
     }
-    
-    @objc private func toggleEditing() {
+    @IBAction func toggleAction(_ sender: Any) {
         tableView.setEditing(!tableView.isEditing, animated: true)
-        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Done" : "Compare"
+//        let destinationViewController = ChartBartViewController()
+//        self.navigationController?.pushViewController(destinationViewController, animated: true)
+//        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Show" : "Compare"
+        if (citiesToCompare?.count)! >= 2 {
+            print("Cities Count is 2 or bigger")
+            self.performSegue(withIdentifier: "barChart", sender: self)
+        }
+        citiesToCompare?.removeAll()
+        print("Toggle pressed")
+        
+        updateCompareButtonStatus()
+        
     }
+    
+//    @objc private func toggleEditing() {
+//        self.performSegue(withIdentifier: "compare", sender: self)
+//        tableView.setEditing(tableView.isEditing, animated: true)
+//        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Show" : "Compare"
+//        print("Toggle pressed")
+//
+//        updateCompareButtonStatus()
+//    }
     
 //    func setupSearchController() {
 //        searchController = UISearchController(searchResultsController: nil)
@@ -72,6 +120,25 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         return (favoriteCities?.count)!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            let city = favoriteCities![indexPath.row]
+            citiesToCompare?.append(city)
+            print("DidSelect city - \(String(describing: citiesToCompare?.count))")
+            updateCompareButtonStatus()
+        }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        //  TODO: fix bug when not deselecting last item first.
+//        let city = favoriteCities![indexPath.row]
+        if tableView.isEditing {
+            citiesToCompare?.remove(at: indexPath.row)
+        
+            print("DidDeSelect city - \(String(describing: citiesToCompare?.count))")
+            updateCompareButtonStatus()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -89,7 +156,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
 //            tableView.reloadData()
 //        }
 //    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showFavoriteDetails" {
@@ -99,11 +165,15 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             let selectedCity = favoriteCities![(indexPath?.row)!]
             detailViewController?.city = selectedCity
             detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else if segue.identifier == "barChart" {
+            let chartBarViewController = segue.destination as? ChartBartViewController
+            print("Preparing for ChartBarViewController")
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return !tableView.isEditing
+        
     }
     
     // MARK: UITableViewDataSource methods
