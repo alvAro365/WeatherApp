@@ -163,43 +163,30 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-278"/>
         </scene>
-        <!--Chart Bart View Controller-->
+        <!--BarChart-->
         <scene sceneID="J6E-0X-TMb">
             <objects>
-                <viewController storyboardIdentifier="ChartBarViewController" hidesBottomBarWhenPushed="YES" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChartBarViewController" title="BarChart" hidesBottomBarWhenPushed="YES" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oqI-VG-Dyu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcG-Nv-p7a" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="153" width="343" height="494"/>
+                                <rect key="frame" x="16" y="136" width="343" height="511"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="-50" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-Z6-h12">
-                                <rect key="frame" x="14" y="116" width="347" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="Kqa-SU-eEh"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="renderCharts" destination="uXG-Lk-nfl" eventType="valueChanged" id="Aaj-HL-0tt"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qcG-Nv-p7a" firstAttribute="top" secondItem="2tr-Z6-h12" secondAttribute="bottom" constant="8" symbolic="YES" id="3wy-39-aiN"/>
-                            <constraint firstAttribute="bottom" secondItem="qcG-Nv-p7a" secondAttribute="bottom" constant="20" symbolic="YES" id="Com-v6-38Q"/>
-                            <constraint firstItem="2tr-Z6-h12" firstAttribute="leading" secondItem="oqI-VG-Dyu" secondAttribute="leadingMargin" id="Fth-q4-fDT"/>
-                            <constraint firstItem="2tr-Z6-h12" firstAttribute="leading" secondItem="qcG-Nv-p7a" secondAttribute="leading" id="Ikz-7u-SDx"/>
-                            <constraint firstItem="2tr-Z6-h12" firstAttribute="top" secondItem="AvH-q9-Mx4" secondAttribute="top" id="Jds-mH-V1S"/>
-                            <constraint firstItem="2tr-Z6-h12" firstAttribute="trailing" secondItem="oqI-VG-Dyu" secondAttribute="trailingMargin" id="c3N-Pq-ysv"/>
-                            <constraint firstItem="2tr-Z6-h12" firstAttribute="trailing" secondItem="qcG-Nv-p7a" secondAttribute="trailing" id="q2i-UH-eQk"/>
+                            <constraint firstItem="qcG-Nv-p7a" firstAttribute="top" secondItem="AvH-q9-Mx4" secondAttribute="top" constant="20" id="hiv-P5-6qI"/>
+                            <constraint firstItem="qcG-Nv-p7a" firstAttribute="trailing" secondItem="oqI-VG-Dyu" secondAttribute="trailingMargin" id="rdo-8b-hBH"/>
+                            <constraint firstItem="qcG-Nv-p7a" firstAttribute="leading" secondItem="oqI-VG-Dyu" secondAttribute="leadingMargin" id="toA-8U-LIi"/>
+                            <constraint firstAttribute="bottom" secondItem="qcG-Nv-p7a" secondAttribute="bottom" constant="20" symbolic="YES" id="yNu-IZ-9Ni"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AvH-q9-Mx4"/>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="qcG-Nv-p7a" id="X2c-Xv-x5v"/>
-                        <outlet property="number1" destination="2tr-Z6-h12" id="lY3-Xo-Vda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnK-55-b61" userLabel="First Responder" sceneMemberID="firstResponder"/>
