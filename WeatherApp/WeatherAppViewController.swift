@@ -167,6 +167,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
         } else if segue.identifier == "barChart" {
             let chartBarViewController = segue.destination as? ChartBartViewController
+            chartBarViewController?.citiesToCompare = citiesToCompare!
             print("Preparing for ChartBarViewController")
         }
     }

@@ -13,13 +13,15 @@ class ChartBartViewController: UIViewController {
 
     @IBOutlet weak var number1: UISlider!
     @IBOutlet weak var barChart: BarChartView!
+    var citiesToCompare: [City] = []
     @IBAction func renderCharts() {
-        barChartUpdate()
+//        barChartUpdate()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        barChartUpdate()
+        createCharts(cities: citiesToCompare)
         // Do any additional setup after loading the view.
     }
 
