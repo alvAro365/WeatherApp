@@ -153,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742" y="-278"/>
+            <point key="canvasLocation" x="1569" y="-278"/>
         </scene>
         <!--Chart Bart View Controller-->
         <scene sceneID="J6E-0X-TMb">
@@ -412,13 +412,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8B-Fz-6Na" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="-278"/>
+            <point key="canvasLocation" x="601" y="-278"/>
         </scene>
     </scenes>
     <resources>
         <image name="star" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hUW-9R-Mht"/>
+        <segue reference="gcs-es-Tji"/>
     </inferredMetricsTieBreakers>
 </document>

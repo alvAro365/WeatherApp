@@ -45,6 +45,8 @@ class ChartBartViewController: UIViewController {
         
         
         let data = BarChartData(dataSets: [dataSet, dataSet1, dataSet2])
+        
+        
         //legend customization
         let legend = barChart.legend
         legend.horizontalAlignment = .center
@@ -54,6 +56,7 @@ class ChartBartViewController: UIViewController {
 //        legend.yOffset = 10.0;
 //        legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0
+        
         // barChart customization
         barChart.xAxis.drawGridLinesEnabled = false
         barChart.rightAxis.enabled = false
@@ -64,11 +67,30 @@ class ChartBartViewController: UIViewController {
 //        barChart.xAxis.centerAxisLabelsEnabled = false
         barChart.xAxis.drawLabelsEnabled = false
         barChart.chartDescription?.text = "Temperature"
-        // All additions to this function will go here
+        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
+        
+        // BarChart animation
         barChart.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
         // This must stay at the end of the function
 //        let formatter = ChartStringFormatter()
 //        barChart.xAxis.valueFormatter = formatter
+        barChart.data = data
+        barChart.notifyDataSetChanged()
+        
+    }
+    
+    func createCharts(cities: [City]) {
+//        var dataEntries: [BarChartDataEntry] = []
+        var dataSets: [BarChartDataSet] = []
+        var i = 1.0
+        for city in cities {
+            let dataEntry = BarChartDataEntry(x: i, y: Double(city.temperature))
+            let dataSet = BarChartDataSet(values: [dataEntry], label: city.name)
+            dataSets.append(dataSet)
+            i += 1.0
+        }
+        
+        let data = BarChartData(dataSets: dataSets)
         barChart.data = data
         barChart.notifyDataSetChanged()
         
