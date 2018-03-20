@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "winter_boots.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "umbrella.png",
       "scale" : "2x"
     },
     {
