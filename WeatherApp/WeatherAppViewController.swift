@@ -22,6 +22,9 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
 //        setupSearchController()
+        let editButton = UIBarButtonItem(title: "Compare", style: .plain, target: self, action: #selector(toggleEditing))
+        navigationItem.rightBarButtonItem = editButton
+        tableView.allowsMultipleSelectionDuringEditing = true
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
@@ -33,6 +36,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
+    }
+    
+    @objc private func toggleEditing() {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Done" : "Compare"
     }
     
 //    func setupSearchController() {
@@ -94,7 +102,18 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    // MARK: TabBarController Delegate
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !tableView.isEditing
+    }
+    
+    // MARK: UITableViewDataSource methods
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .none
+//    }
+//    
+//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return false
+//    }
     
 }
 
