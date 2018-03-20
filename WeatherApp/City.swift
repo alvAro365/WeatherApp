@@ -64,9 +64,7 @@ extension City {
                             if let list = jsonResult["list"]! as? [[String: Any]] {
                                 for case let city in list {
                                     if let city = City(json: city) {
-                                        DispatchQueue.main.async {
-                                            cities.append(city)
-                                        }
+                                        cities.append(city)
                                         print("******** \(cities.count)")
                                     }
                                 }

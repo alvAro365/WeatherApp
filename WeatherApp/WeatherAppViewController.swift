@@ -27,7 +27,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             if let selection = tableView.indexPathsForSelectedRows {
                 if selection.count >= 2 {
                     actionButton.isEnabled = true
-                } else if selection.count == 1  {
+                } else if selection.count < 2  {
                     actionButton.isEnabled = false
                 }
             } else {
