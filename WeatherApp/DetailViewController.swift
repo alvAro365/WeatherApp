@@ -62,11 +62,13 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.centerAlignStackView.constant -= self.view.bounds.width
             self.view.layoutIfNeeded()
-        }, completion: nil)
-        
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
+        }, completion: { finished in UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
             self.iconLabel.isHidden = false
-        }, completion: nil)
+        }, completion: nil)})
+        
+//        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
+//            self.iconLabel.isHidden = false
+//        }, completion: nil)
     }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
