@@ -13,12 +13,14 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     var city: City?
     var favoriteCities: [City]? = []
-    var citiesToCompare: [City]? = []
+    var citiesToCompare: [City] = []
 //    var filteredData = [String: [String: String]]()
     @IBOutlet weak var actionButton: UIBarButtonItem!
     var searchController: UISearchController!
     var indexPathsForSelectedRows: [NSIndexPath]?
     var compareButton: UIBarButtonItem?
+    var selectedCities: [Int] = []
+    
     
     // MARK: Private cunctions
     
@@ -59,11 +61,17 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     @IBAction func toggleAction(_ sender: Any) {
+        
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            for selection in indexPaths {
+                citiesToCompare.append(favoriteCities![selection.row])
+            }
+        }
         tableView.setEditing(!tableView.isEditing, animated: true)
-        if (citiesToCompare?.count)! >= 2 {
+        if !tableView.isEditing {
             self.performSegue(withIdentifier: "barChart", sender: self)
         }
-        citiesToCompare?.removeAll()
+        citiesToCompare.removeAll()
         updateCompareButtonStatus()
         
     }
@@ -87,15 +95,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
-            let city = favoriteCities![indexPath.row]
-            citiesToCompare?.append(city)
             updateCompareButtonStatus()
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //  TODO: fix bug when not deselecting last item first.
         if tableView.isEditing {
-            citiesToCompare?.remove(at: indexPath.row)
             updateCompareButtonStatus()
         }
     }
@@ -131,7 +135,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         } else if segue.identifier == "barChart" {
             
             let chartBarViewController = segue.destination as? ChartBartViewController
-            chartBarViewController?.citiesToCompare = citiesToCompare!
+            chartBarViewController?.citiesToCompare = citiesToCompare
         }
     }
     
