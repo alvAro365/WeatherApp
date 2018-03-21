@@ -55,6 +55,10 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        animate()
+    }
+    
+    func animate() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.centerAlignStackView.constant -= self.view.bounds.width
             self.view.layoutIfNeeded()
@@ -62,11 +66,11 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
             self.iconLabel.isHidden = false
-            }, completion: nil)
+        }, completion: nil)
     }
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
-        
+        // TODO: change favorites array to set so to avoid duplicate data
         sender.image = #imageLiteral(resourceName: "star-filled")
         favorites.append(city!)
         // TODO: check if saved file exists before merging arrays

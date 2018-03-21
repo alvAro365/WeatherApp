@@ -50,7 +50,7 @@ class ChartBartViewController: UIViewController {
         legend.horizontalAlignment = .center
         legend.verticalAlignment = .top
         legend.drawInside = true
-        //        legend.orientation = .vertical
+        legend.orientation = .horizontal
         //        legend.yOffset = 10.0;
         //        legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0
@@ -64,7 +64,7 @@ class ChartBartViewController: UIViewController {
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.drawLabelsEnabled = false
         barChart.chartDescription?.text = "Temperature"
-        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
+//        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
         
         // BarChart animation
         barChart.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
