@@ -12,7 +12,7 @@ import Foundation
 struct City: Codable {
     
     let name: String
-    let temperature: Float
+    let temperature: Int
     let wind: Float
     let icon: String
     let description: String
@@ -36,7 +36,7 @@ extension City {
                 return nil
         }
         self.name = name
-        self.temperature = temperature
+        self.temperature = Int(temperature)
         self.wind = wind
         self.description = weatherDescription
         self.icon = self.icons[iconID]!

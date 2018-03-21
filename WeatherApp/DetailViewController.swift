@@ -35,17 +35,8 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        let mainViewController = segue.destination as? WeatherAppViewController
-//        mainViewController?.city = city!
-//    }
-    
     // MARK: ViewController Delegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,11 +57,8 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         }, completion: { finished in UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
             self.iconLabel.isHidden = false
         }, completion: nil)})
-        
-//        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
-//            self.iconLabel.isHidden = false
-//        }, completion: nil)
     }
+    
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         // TODO: change favorites array to set so to avoid duplicate data
@@ -96,7 +84,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     func setupViews() -> Void {
         if let city = city {
             cityLable.text = city.name
-            let temp = Int(city.temperature)
+            let temp = city.temperature
             temperatureLabel.text = "\(temp)℃"
             windLabel.text = "\(city.wind) m/s"
             iconLabel.text = city.icon

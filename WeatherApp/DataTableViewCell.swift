@@ -21,5 +21,4 @@ class DataTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-
 }

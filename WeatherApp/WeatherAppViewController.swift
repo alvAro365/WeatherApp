@@ -23,7 +23,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: Private cunctions
-    
     func updateCompareButtonStatus() {
         if tableView.isEditing {
             if let selection = tableView.indexPathsForSelectedRows {
@@ -82,8 +81,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             let city = favorites[indexPath.row]
             cell.forecast.text = city.icon
             cell.place.text = city.name
-            // TODO: fix casting
-            let temp = Int(city.temperature)
+            let temp = city.temperature
             cell.temp.text = "\(temp)℃"
         }
         return cell
