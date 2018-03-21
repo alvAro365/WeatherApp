@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     var sunglassesImage: UIImageView?
     var animator: UIDynamicAnimator?
     var clothes: [UIImageView]?
+    var isSaved = false
     @IBOutlet weak var cityLable: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
@@ -34,17 +35,8 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        let mainViewController = segue.destination as? WeatherAppViewController
-//        mainViewController?.city = city!
-//    }
-    
     // MARK: ViewController Delegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,27 +54,29 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.centerAlignStackView.constant -= self.view.bounds.width
             self.view.layoutIfNeeded()
-        }, completion: nil)
-        
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
+        }, completion: { finished in UIView.animate(withDuration: 0.5, delay: 0.5, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
             self.iconLabel.isHidden = false
-        }, completion: nil)
+        }, completion: nil)})
     }
+    
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         // TODO: change favorites array to set so to avoid duplicate data
-        sender.image = #imageLiteral(resourceName: "star-filled")
-        favorites.append(city!)
-        // TODO: check if saved file exists before merging arrays
-        if Storage.fileExists() {
-         favorites += Storage.load([City].self)
-        } 
-        
-        if Storage.save(favorites) {
-            print("Saving succeeded")
-            print(favorites.count)
-        } else {
-            print("Saving failed")
+        if !isSaved {
+            sender.image = #imageLiteral(resourceName: "star-filled")
+            favorites.append(city!)
+            
+            if Storage.fileExists() {
+             favorites += Storage.load([City].self)
+            }
+            
+            if Storage.save(favorites) {
+                print("Saving succeeded")
+                print(favorites.count)
+            } else {
+                print("Saving failed")
+            }
+            isSaved = true
         }
     }
     
@@ -90,7 +84,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     func setupViews() -> Void {
         if let city = city {
             cityLable.text = city.name
-            let temp = Int(city.temperature)
+            let temp = city.temperature
             temperatureLabel.text = "\(temp)℃"
             windLabel.text = "\(city.wind) m/s"
             iconLabel.text = city.icon

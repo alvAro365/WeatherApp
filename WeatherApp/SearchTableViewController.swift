@@ -17,12 +17,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         super.viewDidLoad()
         setupSearchController()
         searchController.searchBar.delegate = self
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,12 +76,22 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
         
         cell.place?.text = cities[indexPath.row].name
-        let temp = Int(cities[indexPath.row].temperature)
+        let temp = cities[indexPath.row].temperature
         cell.temp.text = "\(temp)℃"
         cell.forecast.text = cities[indexPath.row].icon
         return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "detailView" {
+            let detailViewController = segue.destination as? DetailViewController
+            let selectedCityCell = sender as? DataTableViewCell
+            let indexPath = tableView.indexPath(for: selectedCityCell!)
+            let selectedCity = cities[(indexPath?.row)!]
+            detailViewController?.city = selectedCity
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -127,18 +131,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        super.prepare(for: segue, sender: sender)
-        if segue.identifier == "detailView" {
-            let detailViewController = segue.destination as? DetailViewController
-            let selectedCityCell = sender as? DataTableViewCell
-            let indexPath = tableView.indexPath(for: selectedCityCell!)
-            let selectedCity = cities[(indexPath?.row)!]
-            detailViewController?.city = selectedCity
-        }
-    }
 }
 
 
