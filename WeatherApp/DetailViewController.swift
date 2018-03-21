@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     var sunglassesImage: UIImageView?
     var animator: UIDynamicAnimator?
     var clothes: [UIImageView]?
+    var isSaved = false
     @IBOutlet weak var cityLable: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
@@ -73,18 +74,21 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         // TODO: change favorites array to set so to avoid duplicate data
-        sender.image = #imageLiteral(resourceName: "star-filled")
-        favorites.append(city!)
-        // TODO: check if saved file exists before merging arrays
-        if Storage.fileExists() {
-         favorites += Storage.load([City].self)
-        } 
-        
-        if Storage.save(favorites) {
-            print("Saving succeeded")
-            print(favorites.count)
-        } else {
-            print("Saving failed")
+        if !isSaved {
+            sender.image = #imageLiteral(resourceName: "star-filled")
+            favorites.append(city!)
+            
+            if Storage.fileExists() {
+             favorites += Storage.load([City].self)
+            }
+            
+            if Storage.save(favorites) {
+                print("Saving succeeded")
+                print(favorites.count)
+            } else {
+                print("Saving failed")
+            }
+            isSaved = true
         }
     }
     
