@@ -146,6 +146,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="WeatherApp" id="jMk-MO-1tc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2Ia-gM-49z">
+                            <connections>
+                                <action selector="onCancelClick:" destination="BYZ-38-t0r" id="dVH-WI-hib"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="1Tr-wW-5LK">
                             <connections>
                                 <action selector="toggleAction:" destination="BYZ-38-t0r" id="Pdl-WC-jWP"/>
@@ -155,6 +160,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actionButton" destination="1Tr-wW-5LK" id="Slr-if-erE"/>
+                        <outlet property="cancelButton" destination="2Ia-gM-49z" id="305-y1-pce"/>
                         <outlet property="tableView" destination="ugS-Jj-Szd" id="Wz7-9Z-Fev"/>
                         <segue destination="uXG-Lk-nfl" kind="show" identifier="barChart" id="MMZ-Mk-D16"/>
                     </connections>

@@ -16,6 +16,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var citiesToCompare: [City] = []
 //    var filteredData = [String: [String: String]]()
     @IBOutlet weak var actionButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     var searchController: UISearchController!
     var indexPathsForSelectedRows: [NSIndexPath]?
     var compareButton: UIBarButtonItem?
@@ -41,6 +42,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
 //        updateCompareButtonStatus()
         tableView.dataSource = self
         tableView.delegate = self
+        cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
@@ -68,12 +70,25 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidAppear(_ animated: Bool) {
         updateCompareButtonStatus()
     }
-    @IBAction func toggleAction(_ sender: Any) {
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        tableView.setEditing(false, animated: true)
+        cancelButton.isEnabled = false
+    }
+    @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
+        tableView.setEditing(false, animated: true)
+        actionButton.isEnabled = true
+        cancelButton.isEnabled = false
         
+        
+    }
+    @IBAction func toggleAction(_ sender: Any) {
+        cancelButton.isEnabled = true
         if let indexPaths = tableView.indexPathsForSelectedRows {
             for selection in indexPaths {
                 citiesToCompare.append(favoriteCities![selection.row])
             }
+            cancelButton.isEnabled = false
         }
         tableView.setEditing(!tableView.isEditing, animated: true)
         if !tableView.isEditing {
