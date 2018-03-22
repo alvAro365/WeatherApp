@@ -38,6 +38,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        updateCompareButtonStatus()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsMultipleSelectionDuringEditing = true
@@ -48,6 +49,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if Storage.fileExists() {
+            favoriteCities = Storage.load([City].self)
+            tableView.reloadData()
+        }
         if (favoriteCities?.count)! < 2 {
             actionButton.isEnabled = false
         } else {
@@ -58,6 +63,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateCompareButtonStatus()
     }
     @IBAction func toggleAction(_ sender: Any) {
         

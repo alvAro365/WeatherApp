@@ -75,10 +75,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
         
-        cell.place?.text = cities[indexPath.row].name
-        let temp = cities[indexPath.row].temperature
-        cell.temp.text = "\(temp)℃"
-        cell.forecast.text = cities[indexPath.row].icon
+        let city = cities[indexPath.row]
+        
+        cell.place?.text = "\(city.name) (\(city.country)) "
+        cell.temp.text = "\(city.temperature)℃"
+        cell.forecast.text = city.icon
         return cell
     }
 
