@@ -17,6 +17,7 @@ struct City: Codable {
     let icon: String
     let description: String
     var favorites =  [City]()
+    let country: String
 
     private let icons = ["01d": "☀️","02d": "⛅️","03d": "☁️","04d": "☁️","09d": "🌧","10d": "🌦","11d": "🌩","13d": "🌨","50d": "🌫","01n": "🌙","02n": "☁️","03n": "☁️","04n": "☁️","09n": "🌧","10n": "🌧","11n": "🌩","13n": "🌨","50n": "🌫"]
 }
@@ -31,7 +32,10 @@ extension City {
             let weatherJSON = json["weather"] as? [[String: Any]],
             let weatherData = weatherJSON.first,
             let iconID = weatherData["icon"] as? String,
-            let weatherDescription = weatherData["main"] as? String
+            let weatherDescription = weatherData["main"] as? String,
+            let countryJSON = json["sys"] as? [String: String],
+            let country = countryJSON["country"]
+        
         else {
                 return nil
         }
@@ -40,7 +44,8 @@ extension City {
         self.wind = wind
         self.description = weatherDescription
         self.icon = self.icons[iconID]!
-        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind), Icon: \(iconID), Description: \(description)")
+        self.country = country
+        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind), Icon: \(iconID), Description: \(description), Country: \(country)")
     }
 }
 
