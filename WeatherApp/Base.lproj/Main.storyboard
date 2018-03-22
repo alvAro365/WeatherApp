@@ -146,6 +146,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="WeatherApp" id="jMk-MO-1tc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="D2K-al-dRe">
+                            <connections>
+                                <action selector="onCancelClick:" destination="BYZ-38-t0r" id="ngj-6W-GqF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="1Tr-wW-5LK">
                             <connections>
                                 <action selector="toggleAction:" destination="BYZ-38-t0r" id="Pdl-WC-jWP"/>
@@ -155,6 +160,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actionButton" destination="1Tr-wW-5LK" id="Slr-if-erE"/>
+                        <outlet property="cancelButton" destination="D2K-al-dRe" id="HrW-f8-Nwy"/>
                         <outlet property="tableView" destination="ugS-Jj-Szd" id="Wz7-9Z-Fev"/>
                         <segue destination="uXG-Lk-nfl" kind="show" identifier="barChart" id="MMZ-Mk-D16"/>
                     </connections>
@@ -414,6 +420,6 @@
         <image name="star" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hUW-9R-Mht"/>
+        <segue reference="gcs-es-Tji"/>
     </inferredMetricsTieBreakers>
 </document>
