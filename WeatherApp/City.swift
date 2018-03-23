@@ -53,14 +53,41 @@ extension City {
 }
 
 extension City {
+    init?(updateJson: [String : Any]) {
+//        print("Update json: \(String(describing: updateJson["name"]))")
+        guard let nameJson = updateJson["name"] as? String
+//        let name = nameJson["name"]
+            else {
+                return nil
+        }
+        self.name = ""
+        self.temperature = 0
+        self.wind = 0.0
+        self.description = ""
+        self.icon = self.icons["01d"]!
+        self.country = ""
+        self.cityId = 0
+//        print("NameJson: \(nameJson)")
+        print("Name: \(nameJson)")
+    }
+}
+
+extension City {
     
-    static func cities(matching query: String, completion: @escaping ([City]) -> Void) {
-        let searchURL = createSearchUrlComponents(query: query)
-        let updateURL = createUpdateDataUrlComponents(query: ["3143244,588409"])
-        print(updateURL)
-        print(searchURL as Any!)
+    static func cities(matching query: String?, updating queryUpdate: [String]?, completion: @escaping ([City]) -> Void) {
+        let url: URL?
+        if query != nil {
+            url = createSearchUrlComponents(query: query!)
+        } else {
+            url = createUpdateDataUrlComponents(query: queryUpdate!)
+        }
         
-        let task = URLSession.shared.dataTask(with: updateURL, completionHandler: { (data, response, error) in
+//        let searchURL = createSearchUrlComponents(query: query!)
+//        let updateURL = createUpdateDataUrlComponents(query: ["3143244", "588409"])
+//        print(updateURL)
+//        print(searchURL as Any!)
+        
+        let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             var cities = [City]()
             if let theError = error {
                 print(theError)
@@ -69,11 +96,19 @@ extension City {
                 if let urlContent = data {
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: options) as AnyObject
-                        print(jsonResult)
+//                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
+//                            print("JsonResult: \(jsonResult)")
                             if let list = jsonResult["list"]! as? [[String: Any]] {
+//                                print("The list is:  \(list)")
+                               
                                 for case let city in list {
-                                    if let city = City(json: city) {
+                                    print("*****city: \(city)")
+//                                    if let city = City(json: city) {
+//                                        print("City: \(city)")
+//                                    }
+                                    if let city = City.init(updateJson: city) {
+                                        print("City: \(city)")
                                         cities.append(city)
                                         print("******** \(cities.count)")
                                     }

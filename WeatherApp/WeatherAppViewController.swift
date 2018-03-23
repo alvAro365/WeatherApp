@@ -21,9 +21,30 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var indexPathsForSelectedRows: [NSIndexPath]?
     var compareButton: UIBarButtonItem?
     var selectedCities: [Int] = []
+    var citiesToUpdate: [String] = []
     
     
     // MARK: Private functions
+    
+    func updateData() {
+        if Storage.fileExists() {
+            favoriteCities = Storage.load([City].self)
+            
+            for city in favoriteCities! {
+                let cityId = String(city.cityId)
+                citiesToUpdate.append(cityId)
+                
+            }
+            City.cities(matching: nil, updating: citiesToUpdate) { cities in self.favoriteCities = cities
+                DispatchQueue.main.async {
+//                    print("The cities are \(String(describing: self.favoriteCities))")
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        print("ID update city: \(citiesToUpdate)")
+    
+    }
     func reloadData() {
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
@@ -51,6 +72,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
         reloadData()
+        updateData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

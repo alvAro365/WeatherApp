@@ -51,7 +51,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            City.cities(matching: searchText) { cities in self.cities = cities
+            City.cities(matching: searchText, updating: nil) { cities in self.cities = cities
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
