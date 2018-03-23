@@ -56,9 +56,11 @@ extension City {
     
     static func cities(matching query: String, completion: @escaping ([City]) -> Void) {
         let searchURL = createSearchUrlComponents(query: query)
+        let updateURL = createUpdateDataUrlComponents(query: ["3143244,588409"])
+        print(updateURL)
         print(searchURL as Any!)
         
-        let task = URLSession.shared.dataTask(with: searchURL, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: updateURL, completionHandler: { (data, response, error) in
             var cities = [City]()
             if let theError = error {
                 print(theError)
@@ -96,6 +98,19 @@ extension City {
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
         searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
         return (searchURLComponents?.url)!
+    }
+    
+    private static func createUpdateDataUrlComponents(query: [String]) -> URL {
+        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
+        searchURLComponents?.path = "/data/2.5/group"
+        
+        let groupQuery = query.joined(separator: ",")
+        let queryItemQuery = URLQueryItem(name: "id", value: groupQuery)
+        let queryItemUnits = URLQueryItem(name:"units", value: "metric")
+        let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
+        searchURLComponents?.queryItems = [queryItemQuery, queryItemUnits, queryItemAppId]
+        return (searchURLComponents?.url)!
+        
     }
     
     
