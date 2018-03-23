@@ -23,7 +23,13 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var selectedCities: [Int] = []
     
     
-    // MARK: Private cunctions
+    // MARK: Private functions
+    func reloadData() {
+        if Storage.fileExists() {
+            favoriteCities = Storage.load([City].self)
+            tableView.reloadData()
+        }
+    }
     func updateCompareButtonStatus() {
         if tableView.isEditing {
             if let selection = tableView.indexPathsForSelectedRows {
@@ -44,26 +50,15 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
-        if Storage.fileExists() {
-            favoriteCities = Storage.load([City].self)
-            tableView.reloadData()
-        }
+        reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if Storage.fileExists() {
-            favoriteCities = Storage.load([City].self)
-            tableView.reloadData()
-        }
+        reloadData()
         if (favoriteCities?.count)! < 2 {
             actionButton.isEnabled = false
         } else {
             actionButton.isEnabled = true
-        }
-        
-        if Storage.fileExists() {
-            favoriteCities = Storage.load([City].self)
-            tableView.reloadData()
         }
     }
     
@@ -79,8 +74,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.setEditing(false, animated: true)
         actionButton.isEnabled = true
         cancelButton.isEnabled = false
-        
-        
+
     }
     @IBAction func toggleAction(_ sender: Any) {
         cancelButton.isEnabled = true
@@ -146,14 +140,12 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showFavoriteDetails" {
-            
             let detailViewController = segue.destination as? DetailViewController
             let selectedCityCell = sender as? DataTableViewCell
             let indexPath = tableView.indexPath(for: selectedCityCell!)
             let selectedCity = favoriteCities![(indexPath?.row)!]
             detailViewController?.city = selectedCity
             detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
-            
         } else if segue.identifier == "barChart" {
             
             let chartBarViewController = segue.destination as? ChartBartViewController

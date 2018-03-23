@@ -12,7 +12,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Properties
     var city: City?
     var favorites = [City]()
-    var sunglassesImage: UIImageView?
+    var outfitImage: UIImageView?
     var animator: UIDynamicAnimator?
     var clothes: [UIImageView]?
     var isSaved = false
@@ -94,11 +94,11 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     func addImage() {
         // TODO: fix hardcoded values
         let imageX = self.view.bounds.width / 2 - 50.0
-        sunglassesImage = UIImageView(frame: CGRect(x: imageX, y: -100, width: 100, height: 100))
-        sunglassesImage?.image = self.getImage()
+        outfitImage = UIImageView(frame: CGRect(x: imageX, y: -100, width: 100, height: 100))
+        outfitImage?.image = self.getImage()
         clothes = [UIImageView]()
-        clothes?.append(sunglassesImage!)
-        self.view.addSubview(sunglassesImage!)
+        clothes?.append(outfitImage!)
+        self.view.addSubview(outfitImage!)
     }
     
     func createAnimatorBehavior() {
@@ -106,7 +106,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         let gravity = UIGravityBehavior(items: clothes!)
         let collider = UICollisionBehavior()
         animator?.addBehavior(gravity)
-        collider.addItem(sunglassesImage!)
+        collider.addItem(outfitImage!)
         collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: 550.0), to: CGPoint(x: self.view.bounds.width, y: 550))
         collider.collisionMode = .everything
         animator?.addBehavior(collider)
@@ -122,6 +122,8 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             return city!.temperature > 15 ? #imageLiteral(resourceName: "t-shirt") : #imageLiteral(resourceName: "jumper")
         case "Clear":
             return city!.temperature > 15 ? #imageLiteral(resourceName: "sunglasses") : #imageLiteral(resourceName: "beanie")
+        case "Mist":
+            return city!.temperature > 20 ? #imageLiteral(resourceName: "t-shirt") : #imageLiteral(resourceName: "jumper")
         default:
             return #imageLiteral(resourceName: "jumper")
         }
