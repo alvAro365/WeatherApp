@@ -13,6 +13,7 @@ class DataTableViewCell: UITableViewCell {
     @IBOutlet weak var place: UILabel!
     @IBOutlet weak var forecast: UILabel!
     @IBOutlet weak var temp: UILabel!
+    @IBOutlet weak var country: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

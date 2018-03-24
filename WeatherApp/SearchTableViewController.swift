@@ -77,7 +77,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         
         let city = cities[indexPath.row]
         
-        cell.place?.text = "\(city.name) (\(city.country)) "
+        cell.place?.text = "\(city.name)"
+        cell.country.text = "\(city.country)"
         cell.temp.text = "\(city.temperature)℃"
         cell.forecast.text = city.icon
         return cell

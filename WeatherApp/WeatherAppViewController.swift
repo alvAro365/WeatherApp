@@ -43,8 +43,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
                 }
             }
         }
-        print("ID update city: \(citiesToUpdate)")
-    
     }
     func reloadData() {
         if Storage.fileExists() {
@@ -67,7 +65,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        updateCompareButtonStatus()
         tableView.dataSource = self
         tableView.delegate = self
         cancelButton.isEnabled = false
@@ -169,7 +166,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             let selectedCity = favoriteCities![(indexPath?.row)!]
             detailViewController?.city = selectedCity
             detailViewController?.favorites = favoriteCities!
-//            detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
         } else if segue.identifier == "barChart" {
             
             let chartBarViewController = segue.destination as? ChartBartViewController

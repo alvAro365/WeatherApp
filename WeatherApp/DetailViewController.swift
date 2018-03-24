@@ -76,7 +76,6 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             city?.isFavorite = false
             let cityIndex = favorites.index(where: { $0.name == city?.name})
             favorites.remove(at:cityIndex!)
-            
             saveData()
             
         }
