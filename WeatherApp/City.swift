@@ -25,7 +25,7 @@ struct City: Codable {
 }
 
 extension City {
-    init?(updateJson: [String : Any]) {
+    init?(updateJson: [String : Any], favorite: Bool) {
         guard let name = updateJson["name"] as? String,
         let temperatureJson = updateJson["main"] as? [String : Any],
         let temperature = temperatureJson["temp"] as? Float,
@@ -48,7 +48,7 @@ extension City {
         self.icon = self.icons[iconId]!
         self.country = country
         self.cityId = cityId
-        self.isFavorite = false
+        self.isFavorite = favorite
         print("Name: \(name), Temperature: \(temperature), Wind: \(wind), Description: \(description), Icon: \(iconId), Country: \(country), CityId: \(cityId), Favorite: \(isFavorite)")
     }
 }
@@ -57,10 +57,13 @@ extension City {
     
     static func cities(matching query: String?, updating queryUpdate: [String]?, completion: @escaping ([City]) -> Void) {
         let url: URL?
+        var isFavorite: Bool?
         if query != nil {
             url = createUrl(query: query!, updateQuery: nil)
+            isFavorite = false
         } else {
             url = createUrl(query: nil, updateQuery: queryUpdate)
+            isFavorite = true
         }
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             var cities = [City]()
@@ -74,7 +77,7 @@ extension City {
                         if((jsonResult as? [String : Any]) != nil) {
                             if let list = jsonResult["list"]! as? [[String: Any]] {
                                 for case let city in list {
-                                    if let city = City.init(updateJson: city) {
+                                    if let city = City.init(updateJson: city, favorite: isFavorite!) {
                                         cities.append(city)
                                         print("******** \(cities.count)")
                                     }
