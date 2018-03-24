@@ -70,30 +70,29 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             if Storage.fileExists() {
              favorites += Storage.load([City].self)
             }
-            
-            if Storage.save(favorites) {
-                print("Saving succeeded")
-                print(favorites.count)
-            } else {
-                print("Saving failed")
-            }
+            saveData()
         } else {
             sender.image = #imageLiteral(resourceName: "star")
             city?.isFavorite = false
             let cityIndex = favorites.index(where: { $0.name == city?.name})
             favorites.remove(at:cityIndex!)
             
-            if Storage.save(favorites) {
-                print("Saving succeeded")
-                print(favorites.count)
-            } else {
-                print("Saving failed")
-            }
+            saveData()
             
         }
     }
     
-    // MARK: Private functions
+    // MARK: Helper functions
+    
+    func saveData() {
+        
+        if Storage.save(favorites) {
+            print("Saving succeeded")
+            print(favorites.count)
+        } else {
+            print("Saving failed")
+        }
+    }
     func setupViews() -> Void {
         if let city = city {
             cityLable.text = city.name
@@ -107,7 +106,6 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             } else {
                 saveFavorite.image = #imageLiteral(resourceName: "star")
             }
-            
         }
     }
     
