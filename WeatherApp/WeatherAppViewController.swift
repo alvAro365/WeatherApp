@@ -70,7 +70,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
         reloadData()
-        updateData()
+        if favoriteCities!.count > 0 {
+            updateData()
+
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

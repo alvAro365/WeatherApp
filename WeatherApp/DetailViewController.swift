@@ -119,12 +119,13 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func createAnimatorBehavior() {
+        let boundaryY = self.view.bounds.height - 50.0
         animator = UIDynamicAnimator(referenceView: self.view)
         let gravity = UIGravityBehavior(items: clothes!)
         let collider = UICollisionBehavior()
         animator?.addBehavior(gravity)
         collider.addItem(outfitImage!)
-        collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: 550.0), to: CGPoint(x: self.view.bounds.width, y: 550))
+        collider.addBoundary(withIdentifier: "bottomBoundary" as NSCopying, from: CGPoint(x: 0, y: boundaryY), to: CGPoint(x: self.view.bounds.width, y: boundaryY))
         collider.collisionMode = .everything
         animator?.addBehavior(collider)
     }
