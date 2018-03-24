@@ -24,35 +24,6 @@ struct City: Codable {
 }
 
 extension City {
-    init?(json: [String : Any]) {
-        guard let name = json["name"] as? String,
-            let temperatureJSON = json["main"] as? [String: Float],
-            let temperature = temperatureJSON["temp"],
-            let windJSON = json["wind"] as? [String: Float],
-            let wind = windJSON["speed"],
-            let weatherJSON = json["weather"] as? [[String: Any]],
-            let weatherData = weatherJSON.first,
-            let iconID = weatherData["icon"] as? String,
-            let weatherDescription = weatherData["main"] as? String,
-            let countryJSON = json["sys"] as? [String: String],
-            let country = countryJSON["country"],
-            let cityId = json["id"] as? Int
-        
-        else {
-                return nil
-        }
-        self.name = name
-        self.temperature = Int(temperature)
-        self.wind = wind
-        self.description = weatherDescription
-        self.icon = self.icons[iconID]!
-        self.country = country
-        self.cityId = cityId
-        print("Name: \(self.name), Temperature: \(self.temperature), Wind: \(self.wind), Icon: \(iconID), Description: \(description), Country: \(country), ID: \(cityId)")
-    }
-}
-
-extension City {
     init?(updateJson: [String : Any]) {
         guard let name = updateJson["name"] as? String,
         let temperatureJson = updateJson["main"] as? [String : Any],
@@ -76,7 +47,6 @@ extension City {
         self.icon = self.icons[iconId]!
         self.country = country
         self.cityId = cityId
-//        print("NameJson: \(nameJson)")
         print("Name: \(name), Temperature: \(temperature), Wind: \(wind), Description: \(description), Icon: \(iconId), Country: \(country), CityId: \(cityId)")
     }
 }
@@ -90,12 +60,6 @@ extension City {
         } else {
             url = createUpdateDataUrlComponents(query: queryUpdate!)
         }
-        
-//        let searchURL = createSearchUrlComponents(query: query!)
-//        let updateURL = createUpdateDataUrlComponents(query: ["3143244", "588409"])
-//        print(updateURL)
-//        print(searchURL as Any!)
-        
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             var cities = [City]()
             if let theError = error {
@@ -105,19 +69,10 @@ extension City {
                 if let urlContent = data {
                     do {
                         let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: options) as AnyObject
-//                        print(jsonResult)
                         if((jsonResult as? [String : Any]) != nil) {
-//                            print("JsonResult: \(jsonResult)")
                             if let list = jsonResult["list"]! as? [[String: Any]] {
-//                                print("The list is:  \(list)")
-                               
                                 for case let city in list {
-                                    print("*****city: \(city)")
-//                                    if let city = City(json: city) {
-//                                        print("City: \(city)")
-//                                    }
                                     if let city = City.init(updateJson: city) {
-                                        print("City: \(city)")
                                         cities.append(city)
                                         print("******** \(cities.count)")
                                     }

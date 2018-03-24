@@ -25,20 +25,20 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     
     // MARK: Private functions
-    
     func updateData() {
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
-            
             for city in favoriteCities! {
                 let cityId = String(city.cityId)
                 citiesToUpdate.append(cityId)
-                
             }
             City.cities(matching: nil, updating: citiesToUpdate) { cities in self.favoriteCities = cities
                 DispatchQueue.main.async {
-//                    print("The cities are \(String(describing: self.favoriteCities))")
-                    Storage.save(self.favoriteCities)
+                    if Storage.save(self.favoriteCities) {
+                        print("Update saved")
+                    } else {
+                        print("Update failed")
+                    }
                     self.tableView.reloadData()
                 }
             }
