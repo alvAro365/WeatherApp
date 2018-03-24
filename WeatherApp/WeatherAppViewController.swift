@@ -38,6 +38,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             City.cities(matching: nil, updating: citiesToUpdate) { cities in self.favoriteCities = cities
                 DispatchQueue.main.async {
 //                    print("The cities are \(String(describing: self.favoriteCities))")
+                    Storage.save(self.favoriteCities)
                     self.tableView.reloadData()
                 }
             }
