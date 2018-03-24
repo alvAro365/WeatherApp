@@ -54,21 +54,30 @@ extension City {
 
 extension City {
     init?(updateJson: [String : Any]) {
-//        print("Update json: \(String(describing: updateJson["name"]))")
-        guard let nameJson = updateJson["name"] as? String
-//        let name = nameJson["name"]
+        guard let name = updateJson["name"] as? String,
+        let temperatureJson = updateJson["main"] as? [String : Any],
+        let temperature = temperatureJson["temp"] as? Float,
+        let windJson = updateJson["wind"] as? [String : Any],
+        let wind = windJson["speed"] as? Float,
+        let weatherJson = updateJson["weather"] as? [[String : Any]],
+        let weatherDescription = weatherJson.first,
+        let description = weatherDescription["main"] as? String,
+        let iconId = weatherDescription["icon"] as? String,
+        let countryJson = updateJson["sys"] as? [String : Any],
+        let country = countryJson["country"] as? String,
+        let cityId = updateJson["id"] as? Int
             else {
                 return nil
         }
-        self.name = ""
-        self.temperature = 0
-        self.wind = 0.0
-        self.description = ""
-        self.icon = self.icons["01d"]!
-        self.country = ""
-        self.cityId = 0
+        self.name = name
+        self.temperature = Int(temperature)
+        self.wind = wind
+        self.description = description
+        self.icon = self.icons[iconId]!
+        self.country = country
+        self.cityId = cityId
 //        print("NameJson: \(nameJson)")
-        print("Name: \(nameJson)")
+        print("Name: \(name), Temperature: \(temperature), Wind: \(wind), Description: \(description), Icon: \(iconId), Country: \(country), CityId: \(cityId)")
     }
 }
 
