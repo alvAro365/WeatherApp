@@ -56,9 +56,9 @@ extension City {
     static func cities(matching query: String?, updating queryUpdate: [String]?, completion: @escaping ([City]) -> Void) {
         let url: URL?
         if query != nil {
-            url = createSearchUrlComponents(query: query!)
+            url = createUrl(query: query!, updateQuery: nil)
         } else {
-            url = createUpdateDataUrlComponents(query: queryUpdate!)
+            url = createUrl(query: nil, updateQuery: queryUpdate)
         }
         let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             var cities = [City]()
@@ -88,32 +88,26 @@ extension City {
         })
         task.resume()
     }
-    private static func createSearchUrlComponents(query: String) -> URL {
+    private static func createUrl(query: String?, updateQuery: [String]?) -> URL {
         var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
-        searchURLComponents?.path = "/data/2.5/find"
-        let queryItemQuery = URLQueryItem(name: "q", value: query)
-        let queryItemType = URLQueryItem(name: "type", value: "like")
+        let queryItemQuery: URLQueryItem
+        let queryItemType: URLQueryItem
         let queryItemUnits = URLQueryItem(name:"units", value: "metric")
         let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
-        searchURLComponents?.queryItems = [queryItemQuery,queryItemType, queryItemUnits, queryItemAppId]
+        
+        if query != nil {
+            searchURLComponents?.path = "/data/2.5/find"
+            queryItemQuery = URLQueryItem(name: "q", value: query)
+            queryItemType = URLQueryItem(name: "type", value: "like")
+            searchURLComponents?.queryItems = [queryItemQuery, queryItemType, queryItemUnits, queryItemAppId]
+        } else {
+            let groupQuery = updateQuery!.joined(separator: ",")
+            queryItemQuery = URLQueryItem(name: "id", value: groupQuery)
+            searchURLComponents?.path = "/data/2.5/group"
+            searchURLComponents?.queryItems = [queryItemQuery, queryItemUnits, queryItemAppId]
+        }
         return (searchURLComponents?.url)!
     }
-    
-    private static func createUpdateDataUrlComponents(query: [String]) -> URL {
-        var searchURLComponents = URLComponents.init(string: "http://api.openweathermap.org")
-        searchURLComponents?.path = "/data/2.5/group"
-        
-        let groupQuery = query.joined(separator: ",")
-        let queryItemQuery = URLQueryItem(name: "id", value: groupQuery)
-        let queryItemUnits = URLQueryItem(name:"units", value: "metric")
-        let queryItemAppId = URLQueryItem(name:"appid", value: "d8b585f530bf87bf33de4f4939f30f63")
-        searchURLComponents?.queryItems = [queryItemQuery, queryItemUnits, queryItemAppId]
-        return (searchURLComponents?.url)!
-        
-    }
-    
-    
-    
 }
 
 
