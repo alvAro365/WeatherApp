@@ -265,6 +265,7 @@
                         <outlet property="centerAlignStackView" destination="0D3-rd-MLx" id="gwV-SA-7iy"/>
                         <outlet property="cityLable" destination="Wkv-Jq-lsM" id="agZ-Se-chh"/>
                         <outlet property="iconLabel" destination="jR0-fW-AG6" id="NVY-gq-tLC"/>
+                        <outlet property="saveFavorite" destination="yJ6-77-hJE" id="nbn-WB-poE"/>
                         <outlet property="temperatureLabel" destination="Sz6-jy-tuL" id="qId-Pl-dd6"/>
                         <outlet property="windLabel" destination="iAx-Vm-2ct" id="TSm-T1-yfh"/>
                     </connections>

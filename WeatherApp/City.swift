@@ -19,6 +19,7 @@ struct City: Codable {
     var favorites =  [City]()
     let country: String
     let cityId: Int
+    var isFavorite: Bool
 
     private let icons = ["01d": "☀️","02d": "⛅️","03d": "☁️","04d": "☁️","09d": "🌧","10d": "🌦","11d": "🌩","13d": "🌨","50d": "🌫","01n": "🌙","02n": "☁️","03n": "☁️","04n": "☁️","09n": "🌧","10n": "🌧","11n": "🌩","13n": "🌨","50n": "🌫"]
 }
@@ -47,7 +48,8 @@ extension City {
         self.icon = self.icons[iconId]!
         self.country = country
         self.cityId = cityId
-        print("Name: \(name), Temperature: \(temperature), Wind: \(wind), Description: \(description), Icon: \(iconId), Country: \(country), CityId: \(cityId)")
+        self.isFavorite = false
+        print("Name: \(name), Temperature: \(temperature), Wind: \(wind), Description: \(description), Icon: \(iconId), Country: \(country), CityId: \(cityId), Favorite: \(isFavorite)")
     }
 }
 

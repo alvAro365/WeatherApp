@@ -39,6 +39,16 @@ class Storage {
         }
     }
     
+    static func remove() {
+        if fileExists() {
+            do {
+                try FileManager.default.removeItem(at: ArchiveURL)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
     static func fileExists() -> Bool {
         return FileManager.default.fileExists(atPath: ArchiveURL.path)
     }

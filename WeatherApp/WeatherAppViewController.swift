@@ -168,7 +168,8 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             let indexPath = tableView.indexPath(for: selectedCityCell!)
             let selectedCity = favoriteCities![(indexPath?.row)!]
             detailViewController?.city = selectedCity
-            detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
+            detailViewController?.favorites = favoriteCities!
+//            detailViewController?.navigationItem.rightBarButtonItem?.isEnabled = false
         } else if segue.identifier == "barChart" {
             
             let chartBarViewController = segue.destination as? ChartBartViewController

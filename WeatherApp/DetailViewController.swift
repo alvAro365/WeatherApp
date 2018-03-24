@@ -62,8 +62,9 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
         // TODO: change favorites array to set so to avoid duplicate data
-        if !isSaved {
+        if !(city?.isFavorite)! {
             sender.image = #imageLiteral(resourceName: "star-filled")
+            city?.isFavorite = true
             favorites.append(city!)
             
             if Storage.fileExists() {
@@ -76,7 +77,19 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             } else {
                 print("Saving failed")
             }
-            isSaved = true
+        } else {
+            sender.image = #imageLiteral(resourceName: "star")
+            city?.isFavorite = false
+            let cityIndex = favorites.index(where: { $0.name == city?.name})
+            favorites.remove(at:cityIndex!)
+            
+            if Storage.save(favorites) {
+                print("Saving succeeded")
+                print(favorites.count)
+            } else {
+                print("Saving failed")
+            }
+            
         }
     }
     
@@ -88,6 +101,13 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
             temperatureLabel.text = "\(temp)℃"
             windLabel.text = "\(city.wind) m/s"
             iconLabel.text = city.icon
+            
+            if city.isFavorite {
+                saveFavorite.image = #imageLiteral(resourceName: "star-filled")
+            } else {
+                saveFavorite.image = #imageLiteral(resourceName: "star")
+            }
+            
         }
     }
     
