@@ -206,13 +206,13 @@
         <!--Detail View Controller-->
         <scene sceneID="N4F-no-mr5">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FuR-9E-oZR" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8GR-yn-LnU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
-                                <rect key="frame" x="132.66666666666669" y="127.33333333333334" width="148.66666666666669" height="282.66666666666663"/>
+                                <rect key="frame" x="132.66666666666669" y="108" width="148.66666666666669" height="282.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="67"/>
@@ -222,13 +222,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☀️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR0-fW-AG6">
-                                        <rect key="frame" x="20.333333333333343" y="66.999999999999972" width="108" height="119.66666666666666"/>
+                                        <rect key="frame" x="20.333333333333343" y="67" width="108" height="119.66666666666669"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pk9-UT-dso">
-                                        <rect key="frame" x="28.333333333333336" y="186.66666666666666" width="92.333333333333314" height="95.999999999999972"/>
+                                        <rect key="frame" x="28.333333333333336" y="186.66666666666669" width="92.333333333333314" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="20℃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-jy-tuL">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="48"/>
