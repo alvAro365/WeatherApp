@@ -51,6 +51,7 @@ class ChartBartViewController: UIViewController {
         legend.verticalAlignment = .top
         legend.drawInside = true
         legend.orientation = .horizontal
+        legend.textColor = UIColor.white
         //        legend.yOffset = 10.0;
         //        legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0
@@ -61,9 +62,11 @@ class ChartBartViewController: UIViewController {
         barChart.scaleYEnabled = false
         barChart.scaleXEnabled = false
         barChart.highlighter = nil
+        barChart.leftAxis.labelTextColor = UIColor.white
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.drawLabelsEnabled = false
         barChart.chartDescription?.text = "Temperature"
+        barChart.chartDescription?.textColor = UIColor.white
 //        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
         
         // BarChart animation

@@ -69,6 +69,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.separatorStyle = .none
         reloadData()
         if favoriteCities!.count > 0 {
             updateData()
@@ -133,15 +134,20 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.contentView.backgroundColor = UIColor.black
         if tableView.isEditing {
             updateCompareButtonStatus()
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.contentView.backgroundColor = UIColor.black
         if tableView.isEditing {
             updateCompareButtonStatus()
         }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
