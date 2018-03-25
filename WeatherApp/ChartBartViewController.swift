@@ -65,8 +65,8 @@ class ChartBartViewController: UIViewController {
         barChart.leftAxis.labelTextColor = UIColor.white
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.drawLabelsEnabled = false
-        barChart.chartDescription?.text = "Temperature"
-        barChart.chartDescription?.textColor = UIColor.white
+        barChart.chartDescription?.text = ""
+//        barChart.chartDescription?.textColor = UIColor.blue
 //        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
         
         // BarChart animation

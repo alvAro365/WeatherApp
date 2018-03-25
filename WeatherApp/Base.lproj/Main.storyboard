@@ -129,6 +129,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.28847150469999999" green="0.68529901650000002" blue="0.17836269709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="forecast" destination="YS3-fL-7XI" id="2F6-CG-0Wn"/>
                                             <outlet property="place" destination="bb8-Uo-enH" id="s41-1L-Gwm"/>
@@ -458,6 +459,6 @@
         <image name="star" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gcs-es-Tji"/>
+        <segue reference="hUW-9R-Mht"/>
     </inferredMetricsTieBreakers>
 </document>
