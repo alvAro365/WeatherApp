@@ -41,7 +41,6 @@ class ChartBartViewController: UIViewController {
         barChart.data = data
         customizeBarChart()
         barChart.notifyDataSetChanged()
-        
     }
     
     func customizeBarChart() {
@@ -52,8 +51,6 @@ class ChartBartViewController: UIViewController {
         legend.drawInside = true
         legend.orientation = .horizontal
         legend.textColor = UIColor.white
-        //        legend.yOffset = 10.0;
-        //        legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0
         
         // barChart customization
@@ -66,12 +63,9 @@ class ChartBartViewController: UIViewController {
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.drawLabelsEnabled = false
         barChart.chartDescription?.text = ""
-//        barChart.chartDescription?.textColor = UIColor.blue
-//        barChart.chartDescription?.position = CGPoint(x: 50.0, y: 580.0)
-        
+
         // BarChart animation
         barChart.animate(yAxisDuration: 1.5, easingOption: .easeInOutQuart)
-
     }
 
     /*

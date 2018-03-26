@@ -14,7 +14,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var city: City?
     var favoriteCities: [City]? = []
     var citiesToCompare: [City] = []
-//    var filteredData = [String: [String: String]]()
     @IBOutlet weak var actionButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     var searchController: UISearchController!
@@ -22,7 +21,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var compareButton: UIBarButtonItem?
     var selectedCities: [Int] = []
     var citiesToUpdate: [String] = []
-    
     
     // MARK: Private functions
     func updateData() {
@@ -63,6 +61,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -73,9 +72,9 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         reloadData()
         if favoriteCities!.count > 0 {
             updateData()
-
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadData()
@@ -94,12 +93,14 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.setEditing(false, animated: true)
         cancelButton.isEnabled = false
     }
+    
     @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
         tableView.setEditing(false, animated: true)
         actionButton.isEnabled = true
         cancelButton.isEnabled = false
 
     }
+    
     @IBAction func toggleAction(_ sender: Any) {
         cancelButton.isEnabled = true
         if let indexPaths = tableView.indexPathsForSelectedRows {
@@ -114,7 +115,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
         citiesToCompare.removeAll()
         updateCompareButtonStatus()
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -148,24 +148,17 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     // MARK: Custom views
    func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableCell(withIdentifier: "TitleCell")
         return headerView
     }
-//    func updateSearchResults(for searchController: UISearchController) {
-//        if let searchText = searchController.searchBar.text {
-//            filteredData = searchText.isEmpty ? filteredData : data.filter{(key,value) -> Bool in
-//                return (key.range(of: searchText, options: .caseInsensitive) != nil)
-//            }
-//            tableView.reloadData()
-//        }
-//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "showFavoriteDetails" {

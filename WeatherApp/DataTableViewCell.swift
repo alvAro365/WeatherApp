@@ -20,20 +20,4 @@ class DataTableViewCell: UITableViewCell {
         colorView.backgroundColor = UIColor.black
         self.selectedBackgroundView = colorView
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        if selected {
-//            self.backgroundColor = UIColor.red
-            
-        }
-
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        
-    }
-    
 }
