@@ -53,10 +53,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     func updateCompareButtonStatus() {
         if tableView.isEditing {
             if let selection = tableView.indexPathsForSelectedRows {
-                if selection.count >= 2 {
-                    actionButton.isEnabled = true
-                } else if selection.count < 2  {
+                if selection.count < 2 || selection.count > 5 {
                     actionButton.isEnabled = false
+                } else {
+                    actionButton.isEnabled = true
                 }
             } else {
                 actionButton.isEnabled = false
@@ -176,7 +176,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             detailViewController?.city = selectedCity
             detailViewController?.favorites = favoriteCities!
         } else if segue.identifier == "barChart" {
-            
             let chartBarViewController = segue.destination as? ChartBartViewController
             chartBarViewController?.citiesToCompare = citiesToCompare
         }
