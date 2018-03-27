@@ -47,15 +47,15 @@ class ChartBartViewController: UIViewController {
         //legend customization
         let legend = barChart.legend
         legend.horizontalAlignment = .center
-        legend.verticalAlignment = .top
+        legend.verticalAlignment = .bottom
         legend.drawInside = true
         legend.orientation = .horizontal
         legend.textColor = UIColor.white
-        legend.yEntrySpace = 0.0
-        
+
         // barChart customization
         barChart.xAxis.drawGridLinesEnabled = false
         barChart.rightAxis.enabled = false
+        barChart.xAxis.enabled = false
         barChart.scaleYEnabled = false
         barChart.scaleXEnabled = false
         barChart.highlighter = nil
