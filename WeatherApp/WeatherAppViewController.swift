@@ -14,15 +14,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     var city: City?
     var favoriteCities: [City]? = []
     var citiesToCompare: [City] = []
-    @IBOutlet weak var actionButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    var searchController: UISearchController!
-    var indexPathsForSelectedRows: [NSIndexPath]?
-    var compareButton: UIBarButtonItem?
-    var selectedCities: [Int] = []
     var citiesToUpdate: [String] = []
-    
-    // MARK: Private functions
+    @IBOutlet weak var actionButton: UIBarButtonItem!
+    var indexPathsForSelectedRows: [NSIndexPath]?
+
+    // MARK: Helper functions
     func updateData() {
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
@@ -42,13 +38,15 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
     func reloadData() {
         if Storage.fileExists() {
             favoriteCities = Storage.load([City].self)
             tableView.reloadData()
         }
     }
-    func updateCompareButtonStatus() {
+    
+    func updateActionButtonStatus() {
         if tableView.isEditing {
             if let selection = tableView.indexPathsForSelectedRows {
                 if selection.count < 2 || selection.count > 5 {
@@ -62,11 +60,28 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func deactivateEditMode() {
+        tableView.setEditing(false, animated: true)
+    }
+    
+    func showCancelButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector (cancelClick))
+    }
+    
+    func hideCancelButton() {
+        navigationItem.setLeftBarButtonItems([], animated: true)
+    }
+    
+    @objc func cancelClick() {
+        deactivateEditMode()
+        actionButton.isEnabled = true
+        hideCancelButton()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        cancelButton.isEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.separatorStyle = .none
         reloadData()
@@ -86,35 +101,28 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateCompareButtonStatus()
+        updateActionButtonStatus()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        tableView.setEditing(false, animated: true)
-        cancelButton.isEnabled = false
-    }
-    
-    @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
-        tableView.setEditing(false, animated: true)
-        actionButton.isEnabled = true
-        cancelButton.isEnabled = false
-
+        deactivateEditMode()
+        hideCancelButton()
     }
     
     @IBAction func toggleAction(_ sender: Any) {
-        cancelButton.isEnabled = true
+        showCancelButton()
         if let indexPaths = tableView.indexPathsForSelectedRows {
             for selection in indexPaths {
                 citiesToCompare.append(favoriteCities![selection.row])
             }
-            cancelButton.isEnabled = false
+            hideCancelButton()
         }
         tableView.setEditing(!tableView.isEditing, animated: true)
         if !tableView.isEditing {
             self.performSegue(withIdentifier: "barChart", sender: self)
         }
         citiesToCompare.removeAll()
-        updateCompareButtonStatus()
+        updateActionButtonStatus()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,14 +145,14 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         let selectedCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = UIColor.black
         if tableView.isEditing {
-            updateCompareButtonStatus()
+            updateActionButtonStatus()
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = UIColor.black
         if tableView.isEditing {
-            updateCompareButtonStatus()
+            updateActionButtonStatus()
         }
     }
     

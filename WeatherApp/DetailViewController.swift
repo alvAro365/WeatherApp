@@ -82,7 +82,6 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     // MARK: Helper functions
-    
     func saveData() {
         
         if Storage.save(favorites) {
@@ -109,7 +108,6 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     func addImage() {
-        // TODO: fix hardcoded values
         let imageX = self.view.bounds.width / 2 - 50.0
         outfitImage = UIImageView(frame: CGRect(x: imageX, y: -100, width: 100, height: 100))
         outfitImage?.image = self.getImage()
@@ -139,7 +137,7 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
         case "Clouds":
             return city!.temperature > 15 ? #imageLiteral(resourceName: "t-shirt") : #imageLiteral(resourceName: "jumper")
         case "Clear":
-            return city!.temperature > 15 ? #imageLiteral(resourceName: "sunglasses") : #imageLiteral(resourceName: "beanie")
+            return city!.temperature > 10 ? #imageLiteral(resourceName: "sunglasses") : #imageLiteral(resourceName: "beanie")
         case "Mist":
             return city!.temperature > 20 ? #imageLiteral(resourceName: "t-shirt") : #imageLiteral(resourceName: "jumper")
         default:

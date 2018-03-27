@@ -42,14 +42,13 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.placeholder = "Search by city"
         searchController.searchBar.tintColor = UIColor.white
-//        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.barTintColor = UIColor(red: (247/255), green: (247/255), blue: (247/255), alpha: 1)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
         // Sets this view controller as presenting view controller for the search interface
-//        definesPresentationContext = false
+        definesPresentationContext = false
     }
     // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
@@ -77,9 +76,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
-//        cell.selectionStyle = UITableViewCellSelectionStyle.
-        let city = cities[indexPath.row]
         
+        let city = cities[indexPath.row]
         cell.place?.text = "\(city.name)"
         cell.country.text = "\(city.country)"
         cell.temp.text = "\(city.temperature)℃"
