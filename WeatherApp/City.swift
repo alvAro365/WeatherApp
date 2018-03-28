@@ -83,7 +83,7 @@ extension City {
                                     }
                                 }
                             }
-                        }
+                        } 
                     } catch {
                         print("JSON Processing Failed")
                     }

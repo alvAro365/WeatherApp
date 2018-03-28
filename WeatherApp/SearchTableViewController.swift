@@ -12,6 +12,8 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: Properties
     var searchController: UISearchController!
     var cities = [City]()
+    @IBOutlet weak var noResult: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +55,16 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            
+//            print("No result")
+            noResult.text = "No result"
             City.cities(matching: searchText, updating: nil) { cities in self.cities = cities
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
+        } else {
+            noResult.text = ""
         }
     }
     override func didReceiveMemoryWarning() {
@@ -82,6 +89,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         cell.country.text = "\(city.country)"
         cell.temp.text = "\(city.temperature)℃"
         cell.forecast.text = city.icon
+        noResult.text = ""
         return cell
     }
 
