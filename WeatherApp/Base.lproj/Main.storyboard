@@ -167,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-278"/>
         </scene>
-        <!--BarChart-->
+        <!--Temperature-->
         <scene sceneID="J6E-0X-TMb">
             <objects>
-                <viewController storyboardIdentifier="ChartBarViewController" title="BarChart" hidesBottomBarWhenPushed="YES" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChartBarViewController" title="Temperature" hidesBottomBarWhenPushed="YES" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oqI-VG-Dyu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +208,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
                                 <rect key="frame" x="132.66666666666669" y="108" width="148.66666666666669" height="282.66666666666669"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.66666666666666" height="67"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="56"/>
@@ -222,7 +222,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pk9-UT-dso">
-                                        <rect key="frame" x="28.333333333333336" y="186.66666666666669" width="92.333333333333314" height="96"/>
+                                        <rect key="frame" x="28.333333333333343" y="186.66666666666669" width="92.333333333333314" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="20℃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz6-jy-tuL">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="48"/>
@@ -327,7 +327,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-RS-GTl">
                                                     <rect key="frame" x="0.0" y="4" width="116.33333333333333" height="60"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tallinn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-yX-wI5">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tallinn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-yX-wI5">
                                                             <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="30"/>
                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

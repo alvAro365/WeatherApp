@@ -55,11 +55,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            
-//            print("No result")
-            noResult.text = "No result"
+//            noResult.text = "No result"
             City.cities(matching: searchText, updating: nil) { cities in self.cities = cities
                 DispatchQueue.main.async {
+                    self.noResult.text = "No result"
                     self.tableView.reloadData()
                 }
             }
@@ -83,7 +82,6 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! DataTableViewCell
-        
         let city = cities[indexPath.row]
         cell.place?.text = "\(city.name)"
         cell.country.text = "\(city.country)"
