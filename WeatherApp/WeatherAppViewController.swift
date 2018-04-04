@@ -75,6 +75,8 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     @objc func cancelClick() {
         deactivateEditMode()
         actionButton.isEnabled = true
+        self.navigationController?.toolbar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         hideCancelButton()
     }
 
@@ -88,10 +90,21 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         if favoriteCities!.count > 0 {
             updateData()
         }
+        self.navigationController?.toolbar.isHidden = true
+        print("viewDidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.toolbar.isHidden = true
+        
+        if self.navigationController!.toolbar.isHidden {
+            self.hidesBottomBarWhenPushed = true
+        }
+//        self.hidesBottomBarWhenPushed = true
+        
+        print("viewWillAppear")
         reloadData()
         if (favoriteCities?.count)! < 2 {
             actionButton.isEnabled = false
@@ -102,15 +115,27 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         updateActionButtonStatus()
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.toolbar.isHidden = true
+        print("viewDidAppear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         deactivateEditMode()
+//        self.hidesBottomBarWhenPushed = false
+//        self.navigationController?.toolbar.isHidden = false
+//        self.tabBarController?.tabBar.isHidden = false
+        print("viewDidDisappear")
         hideCancelButton()
     }
     
     @IBAction func toggleAction(_ sender: Any) {
         showCancelButton()
+        print("toggleAction")
+        self.navigationController?.toolbar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
+        self.hidesBottomBarWhenPushed = true
+        
         if let indexPaths = tableView.indexPathsForSelectedRows {
             for selection in indexPaths {
                 citiesToCompare.append(favoriteCities![selection.row])

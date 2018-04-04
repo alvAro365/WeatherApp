@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITabBarControllerDelegate {
+class DetailViewController: UIViewController {
     // MARK: Properties
     var city: City?
     var favorites = [City]()
@@ -25,7 +25,6 @@ class DetailViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.delegate = self
         setupViews()
         addImage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
