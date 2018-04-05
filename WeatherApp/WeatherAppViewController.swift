@@ -126,7 +126,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     @objc func toggleAction() {
         showCancelButton()
-        print("toggleAction")
         self.navigationController?.toolbar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
         self.hidesBottomBarWhenPushed = true

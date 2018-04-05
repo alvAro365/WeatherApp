@@ -26,6 +26,7 @@ class ChartBartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.hidesBottomBarWhenPushed = true
     }
     
     func createCharts(cities: [City]) {
