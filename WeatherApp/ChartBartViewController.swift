@@ -53,7 +53,7 @@ class ChartBartViewController: UIViewController {
         //legend customization
         let legend = barChart.legend
         legend.horizontalAlignment = .center
-        legend.verticalAlignment = .top
+        legend.verticalAlignment = .bottom
         legend.drawInside = true
         legend.orientation = .horizontal
         legend.textColor = UIColor.white
