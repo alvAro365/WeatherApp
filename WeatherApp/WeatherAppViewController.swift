@@ -79,7 +79,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         self.tabBarController?.tabBar.isHidden = false
         hideCancelButton()
     }
-
+    func hideToolbar() {
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.toolbar.isHidden = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -96,15 +99,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.toolbar.isHidden = true
-        
-        if self.navigationController!.toolbar.isHidden {
-            self.hidesBottomBarWhenPushed = true
-        }
-//        self.hidesBottomBarWhenPushed = true
-        
-        print("viewWillAppear")
+        hideToolbar()
         reloadData()
         if (favoriteCities?.count)! < 2 {
             actionButton.isEnabled = false
@@ -115,17 +110,11 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         updateActionButtonStatus()
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.toolbar.isHidden = true
-        print("viewDidAppear")
+        hideToolbar()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         deactivateEditMode()
-//        self.hidesBottomBarWhenPushed = false
-//        self.navigationController?.toolbar.isHidden = false
-//        self.tabBarController?.tabBar.isHidden = false
-        print("viewDidDisappear")
         hideCancelButton()
     }
     

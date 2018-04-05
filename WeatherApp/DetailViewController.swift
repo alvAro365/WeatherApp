@@ -42,11 +42,17 @@ class DetailViewController: UIViewController {
         // Move view out of the view
         centerAlignStackView.constant += view.bounds.width
         iconLabel.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+        self.navigationController?.toolbar.isTranslucent = true
+        self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.hidesBottomBarWhenPushed = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animate()
+        self.navigationController?.toolbar.isTranslucent = false
     }
     
     func animate() {
@@ -116,7 +122,7 @@ class DetailViewController: UIViewController {
     }
     
     func createAnimatorBehavior() {
-        let boundaryY = self.view.bounds.height - 50.0
+        let boundaryY = self.view.bounds.height
         animator = UIDynamicAnimator(referenceView: self.view)
         let gravity = UIGravityBehavior(items: clothes!)
         let collider = UICollisionBehavior()
