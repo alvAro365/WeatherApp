@@ -151,20 +151,21 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="rwf-mj-e6x"/>
-                        <barButtonItem title="Compare temperature" id="l3W-Vn-I0y"/>
+                        <barButtonItem title="Compare temperature" id="l3W-Vn-I0y">
+                            <connections>
+                                <action selector="compare:" destination="BYZ-38-t0r" id="kew-0x-USx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="x3N-9h-0fX"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="WeatherApp" id="jMk-MO-1tc">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="1Tr-wW-5LK">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="toggleAction:" destination="BYZ-38-t0r" id="Pdl-WC-jWP"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="actionButton" destination="1Tr-wW-5LK" id="Slr-if-erE"/>
+                        <outlet property="actionButton" destination="l3W-Vn-I0y" id="22C-YH-IX1"/>
                         <outlet property="tableView" destination="ugS-Jj-Szd" id="Wz7-9Z-Fev"/>
                         <segue destination="uXG-Lk-nfl" kind="show" identifier="barChart" id="MMZ-Mk-D16"/>
                     </connections>
@@ -195,6 +196,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AvH-q9-Mx4"/>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barChart" destination="qcG-Nv-p7a" id="X2c-Xv-x5v"/>
                     </connections>
@@ -212,7 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="03o-tt-ODd">
-                                <rect key="frame" x="113.5" y="82.5" width="148.5" height="282.5"/>
+                                <rect key="frame" x="113.5" y="100" width="148.5" height="282.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Tallinn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wkv-Jq-lsM">
                                         <rect key="frame" x="0.0" y="0.0" width="148.5" height="67"/>
@@ -267,6 +269,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="centerAlignStackView" destination="0D3-rd-MLx" id="gwV-SA-7iy"/>
                         <outlet property="cityLable" destination="Wkv-Jq-lsM" id="agZ-Se-chh"/>

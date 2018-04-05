@@ -51,6 +51,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             if let selection = tableView.indexPathsForSelectedRows {
                 if selection.count < 2 || selection.count > 5 {
                     actionButton.isEnabled = false
+                    
                 } else {
                     actionButton.isEnabled = true
                 }
@@ -59,25 +60,29 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    @IBAction func compare(_ sender: UIBarButtonItem) {
+        toggleAction()
+    }
     
     func deactivateEditMode() {
         tableView.setEditing(false, animated: true)
     }
     
     func showCancelButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector (cancelClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector (cancelClick))
     }
     
-    func hideCancelButton() {
-        navigationItem.setLeftBarButtonItems([], animated: true)
+    func showActionButton() {
+//        navigationItem.setLeftBarButtonItems([], animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector (toggleAction))
     }
     
     @objc func cancelClick() {
         deactivateEditMode()
-        actionButton.isEnabled = true
+          actionButton.isEnabled = true
         self.navigationController?.toolbar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        hideCancelButton()
+        showActionButton()
     }
     func hideToolbar() {
         self.tabBarController?.tabBar.isHidden = false
@@ -89,6 +94,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.separatorStyle = .none
+        showActionButton()
         reloadData()
         if favoriteCities!.count > 0 {
             updateData()
@@ -115,10 +121,10 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidDisappear(_ animated: Bool) {
         deactivateEditMode()
-        hideCancelButton()
+        showActionButton()
     }
     
-    @IBAction func toggleAction(_ sender: Any) {
+    @objc func toggleAction() {
         showCancelButton()
         print("toggleAction")
         self.navigationController?.toolbar.isHidden = false
@@ -129,7 +135,7 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             for selection in indexPaths {
                 citiesToCompare.append(favoriteCities![selection.row])
             }
-            hideCancelButton()
+            showActionButton()
         }
         tableView.setEditing(!tableView.isEditing, animated: true)
         if !tableView.isEditing {

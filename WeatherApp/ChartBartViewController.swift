@@ -23,6 +23,11 @@ class ChartBartViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        self.navigationController?.toolbar.isHidden = true
+    }
+    
     func createCharts(cities: [City]) {
         var dataSets: [BarChartDataSet] = []
         let colors = ChartColorTemplates.joyful()
