@@ -17,6 +17,8 @@ class ChartBartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createCharts(cities: citiesToCompare)
+        self.navigationController?.toolbar.isHidden = true
+        self.hidesBottomBarWhenPushed = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,21 +55,21 @@ class ChartBartViewController: UIViewController {
         //legend customization
         let legend = barChart.legend
         legend.horizontalAlignment = .center
-        legend.verticalAlignment = .bottom
+        legend.verticalAlignment = .top
         legend.drawInside = true
         legend.orientation = .horizontal
         legend.textColor = UIColor.white
 
         // barChart customization
-        barChart.xAxis.drawGridLinesEnabled = false
+        let xAxis = barChart.xAxis
+        xAxis.drawGridLinesEnabled = false
+        xAxis.drawLabelsEnabled = false
+        xAxis.enabled = false
         barChart.rightAxis.enabled = false
-        barChart.xAxis.enabled = false
         barChart.scaleYEnabled = false
         barChart.scaleXEnabled = false
         barChart.highlighter = nil
         barChart.leftAxis.labelTextColor = UIColor.white
-        barChart.xAxis.labelPosition = .bottom
-        barChart.xAxis.drawLabelsEnabled = false
         barChart.chartDescription?.text = ""
 
         // BarChart animation

@@ -163,7 +163,6 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actionButton" destination="l3W-Vn-I0y" id="22C-YH-IX1"/>
                         <outlet property="tableView" destination="ugS-Jj-Szd" id="Wz7-9Z-Fev"/>
@@ -174,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="1569" y="-278"/>
         </scene>
-        <!--Temperature-->
+        <!--Bar Chart-->
         <scene sceneID="J6E-0X-TMb">
             <objects>
-                <viewController storyboardIdentifier="ChartBarViewController" title="Temperature" hidesBottomBarWhenPushed="YES" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChartBarViewController" title="Bar Chart" id="uXG-Lk-nfl" customClass="ChartBartViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oqI-VG-Dyu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
