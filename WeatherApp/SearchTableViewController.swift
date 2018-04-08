@@ -48,14 +48,11 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating,
         searchController.searchBar.tintColor = UIColor.white
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
-        // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = false
     }
     // MARK: SearchController delegate
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-//            noResult.text = "No result"
             City.cities(matching: searchText, updating: nil) { cities in self.cities = cities
                 DispatchQueue.main.async {
                     self.noResult.text = "No result"

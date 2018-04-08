@@ -73,7 +73,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func showActionButton() {
-//        navigationItem.setLeftBarButtonItems([], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector (toggleAction))
     }
     
@@ -194,7 +193,6 @@ class WeatherAppViewController: UIViewController, UITableViewDataSource, UITable
             let indexPath = tableView.indexPath(for: selectedCityCell!)
             let selectedCity = favoriteCities![(indexPath?.row)!]
             detailViewController?.city = selectedCity
-            detailViewController?.favorites = favoriteCities!
         } else if segue.identifier == "barChart" {
             let chartBarViewController = segue.destination as? ChartBartViewController
             chartBarViewController?.citiesToCompare = citiesToCompare

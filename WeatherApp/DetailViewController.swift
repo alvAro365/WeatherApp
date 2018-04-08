@@ -30,6 +30,9 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.createAnimatorBehavior()
         })
+        if Storage.fileExists() {
+            favorites = Storage.load([City].self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +56,11 @@ class DetailViewController: UIViewController {
         super.viewDidAppear(animated)
         animate()
         self.navigationController?.toolbar.isTranslucent = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
     }
     
     func animate() {
