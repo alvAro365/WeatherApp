@@ -66,15 +66,10 @@ class DetailViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func saveAsFavorite(_ sender: UIBarButtonItem) {
-        // TODO: change favorites array to set so to avoid duplicate data
         if !(city?.isFavorite)! {
             sender.image = #imageLiteral(resourceName: "star-filled")
             city?.isFavorite = true
             favorites.append(city!)
-            
-            if Storage.fileExists() {
-             favorites += Storage.load([City].self)
-            }
             saveData()
         } else {
             sender.image = #imageLiteral(resourceName: "star")
@@ -82,7 +77,6 @@ class DetailViewController: UIViewController {
             let cityIndex = favorites.index(where: { $0.name == city?.name})
             favorites.remove(at:cityIndex!)
             saveData()
-            
         }
     }
     
